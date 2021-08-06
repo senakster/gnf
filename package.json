@@ -1,6 +1,7 @@
 {
   "name": "gnf-map",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "homepage": "https://omstilmig.nu/gnf-map",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
@@ -10,17 +11,26 @@
     "@types/node": "^12.20.18",
     "@types/react": "^17.0.15",
     "@types/react-dom": "^17.0.9",
+    "@types/react-router-dom": "^5.1.8",
+    "core-js": "^3.16.0",
+    "generate-react-cli": "^7.0.3",
+    "leaflet": "^1.7.1",
+    "leaflet-react": "^3.0.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-leaflet": "^3.2.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
-    "typescript": "^4.3.5",
-    "web-vitals": "^1.1.2"
+    "styled-components": "^5.3.0",
+    "typescript": "^4.3.5"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
     "extends": [
@@ -28,16 +38,28 @@
       "react-app/jest"
     ]
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "@storybook/addon-actions": "^6.3.6",
+    "@storybook/addon-essentials": "^6.3.6",
+    "@storybook/addon-links": "^6.3.6",
+    "@storybook/node-logger": "^6.3.6",
+    "@storybook/preset-create-react-app": "^3.2.0",
+    "@storybook/react": "^6.3.6",
+    "@types/leaflet": "^1.7.4",
+    "@types/query-string": "^6.3.0",
+    "@types/styled-components": "^5.1.12",
+    "@typescript-eslint/eslint-plugin": "^4.29.0",
+    "@typescript-eslint/parser": "^4.29.0",
+    "axios": "^0.21.1",
+    "eslint": "^7.32.0",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "sass": "^1.37.5",
+    "web-vitals": "^2.1.0"
   }
 }

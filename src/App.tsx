@@ -1,24 +1,40 @@
 import React from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+import Router from 'components/global/Router/Router';
+// import Messages from 'components/global/Messages/Messages';
+import Header from 'components/ui/Header/Header';
+import Themes from 'components/global/Themes/Themes';
+import { GlobalStyles, themes } from '_themes';
+import { ThemeProvider } from 'styled-components';
+
+
 
 function App() {
+  const [theme, setTheme] = React.useState(themes.find((t) => t.id === 4)?.name || 'omstillingNu');
+
+  function handleThemeChange(event: any) {
+    const target = event.target;
+    const theme = themes.find((t) => t.id === parseInt(target.value));
+    theme && setTheme(theme.name);
+  }
+
+  const title = 'Grønne Nabofællesskaber'
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ThemeProvider theme={themes.find((t) => t.name === theme)?.theme} >
+      <GlobalStyles />
+      <Header navigation="true" title={title}
+          variant={`fat`}
+          backgroundImage={`https://www.omstilling.nu/wp-content/uploads/2018/10/dylan-de-jonge-449577-unsplash-2.jpg`}
+        // variant={`scrollCollapse`}
+      />
+
+      <Themes variant="minimal" theme={theme} handler={handleThemeChange} />
+      {/* <Messages /> */}
+        <Router />
+
+      </ThemeProvider>
     </div>
   );
 }

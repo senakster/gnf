@@ -7,7 +7,7 @@ import Header from 'components/ui/Header/Header';
 import Themes from 'components/global/Themes/Themes';
 import { GlobalStyles, themes } from '_themes';
 import { ThemeProvider } from 'styled-components';
-
+import { have } from '_data/images.json'
 
 
 function App() {
@@ -26,13 +26,13 @@ function App() {
       <GlobalStyles />
       <Header navigation="true" title={title}
           variant={`fat`}
-          backgroundImage={`https://www.omstilling.nu/wp-content/uploads/2018/10/dylan-de-jonge-449577-unsplash-2.jpg`}
+          backgroundImage={have}
         // variant={`scrollCollapse`}
       />
 
       <Themes variant="minimal" theme={theme} handler={handleThemeChange} />
       {/* <Messages /> */}
-        <Router />
+      <Router />
 
       </ThemeProvider>
     </div>

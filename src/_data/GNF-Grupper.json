@@ -1,0 +1,64 @@
+{
+    "grupper": [
+        {
+            "id": "København001",
+            "type": "kommunegruppe",
+            "navn": "København Grønne Nabofællesskaber",
+            "links": [
+                "https://www.facebook.com/groups/298861987958240"
+            ],
+            "beskrivelse": "København Grønne Nabofællesskaber har til formål at skabe lokalt netværk for omstillingsinteresserede folk og familier. Vi ønsker at hjælpe folk til at finde grønne ligesindede i København og få endnu flere bæredygtige aktiviteter ud i lokalsamfundet. Vi ved, at det er nemmere at leve bæredygtigt, når man er en del af et grønt fællesskab, og med Grønne Nabofællesskaber gør vi det muligt for alle at indgå i et grønt fællesskab 🌍 Det handler om at inspirere andre og blive inspireret af andre til gode grønne løsninger.",
+            "kommune": "Københavns Kommune"
+        },
+        {
+            "id": "Roskilde001",
+            "type": "kommunegruppe",
+            "navn": "Roskilde Grønne Nabofællesskaber",
+            "links": [
+                "https://www.facebook.com/groups/1388863494643176"
+            ],
+            "beskrivelse": "Roskilde Grønne Nabofællesskaber har til formål at skabe lokalt netværk for omstillingsinteresserede folk og familier. Vi ønsker at hjælpe folk til at finde grønne ligesindede i Roskilde og få endnu flere bæredygtige aktiviteter ud i lokalsamfundet. Vi ved, at det er nemmere at leve bæredygtigt, når man er en del af et grønt fællesskab, og med Grønne Nabofællesskaber gør vi det muligt for alle at indgå i et grønt fællesskab 🌍 Det handler om at inspirere andre og blive inspireret af andre til gode grønne løsninger.",
+            "kommune": "Roskilde Kommune"
+        },
+        {
+            "id": "Hvidovre001",
+            "type": "kommunegruppe",
+            "navn": "Hvidovre Grønne Nabofællesskaber",
+            "links": [
+                "https://www.facebook.com/groups/608113476543392"
+            ],
+            "beskrivelse": "Hvidovre Grønne Nabofællesskaber har til formål at skabe lokalt netværk for omstillingsinteresserede folk og familier. Vi ønsker at hjælpe folk til at finde grønne ligesindede i Hvidovre og få endnu flere bæredygtige aktiviteter ud i lokalsamfundet. Vi ved, at det er nemmere at leve bæredygtigt, når man er en del af et grønt fællesskab, og med Grønne Nabofællesskaber gør vi det muligt for alle at indgå i et grønt fællesskab 🌍 Det handler om at inspirere andre og blive inspireret af andre til gode grønne løsninger.",
+            "kommune": "Hvidovre Kommune"
+        },
+        {
+            "id": "Egedal001",
+            "type": "kommunegruppe",
+            "navn": "Veksø Grønne Nabofællesskaber (3670)",
+            "links": [
+                "https://www.facebook.com/groups/1660593217447363"
+            ],
+            "beskrivelse": "Veksø Grønne Nabofællesskaber (3670) har til formål at skabe lokalt netværk for omstillingsinteresserede folk og familier. Vi ønsker at hjælpe folk til at finde grønne ligesindede i Veksø og få endnu flere bæredygtige aktiviteter ud i lokalsamfundet. Vi ved, at det er nemmere at leve bæredygtigt, når man er en del af et grønt fællesskab, og med Grønne Nabofællesskaber gør vi det muligt for alle at indgå i et grønt fællesskab 🌍 Det handler om at inspirere andre og blive inspireret af andre til gode grønne løsninger.",
+            "kommune": "Egedal Kommune"
+        },
+        {
+            "id": "Gladsaxe001",
+            "type": "kommunegruppe",
+            "navn": "Søborg Grønne Nabofællesskaber (2860)",
+            "links": [
+                "https://www.facebook.com/groups/1660593217447363"
+            ],
+            "beskrivelse": "Søborg Grønne Nabofællesskaber (2860) har til formål at skabe lokalt netværk for omstillingsinteresserede familier. Vi ønsker at hjælpe folk til at finde grønne ligesindede i Søborg og få endnu flere bæredygtige aktiviteter ud i lokalsamfundet. Vi ved, at det er nemmere at leve bæredygtigt, når man er en del af et grønt fællesskab, og med Grønne Nabofællesskaber gør vi det muligt for alle at indgå i et grønt fællesskab 🌍 Det handler om at inspirere andre og blive inspireret af andre til gode grønne løsninger.",
+            "kommune": "Gladsaxe Kommune"
+        },
+        {
+            "id": "vejle001",
+            "type": "bygruppe",
+            "navn": "Jelling Grønne Nabofællesskaber",
+            "links": [
+                "https://www.facebook.com/groups/770491190149123/"
+            ],
+            "beskrivelse": "Jelling Grønne Nabofællesskaber (7300) har til formål at skabe lokalt netværk for omstillingsinteresserede familier. Vi ønsker at hjælpe folk til at finde grønne ligesindede i Jelling og få endnu flere bæredygtige aktiviteter ud i lokalsamfundet. Vi ved, at det er nemmere at leve bæredygtigt, når man er en del af et grønt fællesskab, og med Villafællesskaber gør vi det muligt for alle at indgå i et grønt fællesskab 🌍 Det handler om at inspirere andre og blive inspireret af andre til gode grønne løsninger.",
+            "kommune": "Vejle Kommune"
+        }
+    ]
+}

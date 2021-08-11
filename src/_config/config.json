@@ -1,0 +1,24 @@
+{
+    "app": {
+        "homepage": "https://omstilmig.nu/gnf-map",
+        "basename": "gnf-map"
+    },
+    "map": {
+        "centerDefault": {
+            "lat": 56.3379289,
+            "lng": 5
+        },
+        "bounds": {
+            "Denmark": [
+                [
+                    53.682124,
+                    6
+                ],
+                [
+                    57.815147,
+                    15.608204
+                ]
+            ]
+        }
+    }
+}

@@ -1,21 +1,25 @@
 import React from 'react';
 import styles from './Card.module.scss';
-// import { navRoute } from '_helpers';
+import { navRoute } from '_helpers';
 
 const Card: React.FC<any> = (props: { data: TGNFG & { variant: string, bgImg: string } }) => {
-  console.log(props)
   const data = props.data;
   return (
     <div 
-    // onClick={() => {navRoute(`group/${data.id}`)}}
+    data-value={data.value}
     className={`${styles.Card}  ${styles[data.type]}  ${styles[data.variant]}`} 
-    data-testid="Card">
+    data-testid="Card"
+    >
       <div className={styles.container}>
         <div 
         className={styles.bg} 
-          style={data.img && data.img.length > 0 ? { backgroundImage: `url(${data.img})` } : data.bgImg? { backgroundImage: `url(${data.bgImg})` } : {}}></div>
+          style={data.img && data.img.length > 0 ? { backgroundImage: `url(${data.img})` } : data.bgImg? { backgroundImage: `url(${data.bgImg})` } : {}}
+        ></div>
         <div className={styles.filter}></div>
-        <h2 className={`${styles.title}`}>{data.navn}</h2>
+        <h3 className={`${styles.title}`}>Grønne Nabofællesskaber</h3>
+        <h2 className={`${styles.title} //link`} 
+        // onClick={() => { navRoute(`/group/${data.id}`) }}
+        >{data.navn}</h2>
         <ul className={styles.content}>
           <li>
             {/* <span className={`${styles.description}`}>{data.beskrivelse}</span> */}

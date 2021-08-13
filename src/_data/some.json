@@ -1,0 +1,9 @@
+{
+    "SoMe": [
+        {
+            "name": "facebook",
+            "url": "https://www.facebook.com/groennenabofaellesskaber",
+            "icon": "%PUBLIC_URL%/logo/facebook_21.svg"
+        }
+    ]
+}

@@ -9,4 +9,6 @@ type TGNFG = {
     beskrivelse: string;
     kommune: string;
     img?: string;
+    onClick?: () => void;
+    value?: string | number; 
 }

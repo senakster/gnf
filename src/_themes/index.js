@@ -10,6 +10,7 @@ import paleTheme from './theme.pale'
 import nightTheme from './theme.night'
 import darkTheme from './theme.dark'
 import omstillingnuTheme from './theme.omstillingnu'
+import gnfTheme from './theme.gnf'
 
 export { mapTilesets } from './mapTiles'
 
@@ -33,7 +34,8 @@ export const themes = [
   {id: 1, name: 'vivid', theme: t(vividTheme) },
   { id: 2, name: 'night', theme: t(nightTheme) },
   { id: 3, name: 'pale', theme: t(paleTheme) },
-  { id: 4, name: 'omstillingNU', theme: t(omstillingnuTheme) },
+  { id: 4, name: 'gnf', theme: t(gnfTheme) },
+  { id: 5, name: 'omstillingNU', theme: t(omstillingnuTheme) },
 ]
 
 
@@ -43,13 +45,14 @@ export const GlobalStyles = createGlobalStyle`
   *::before {
     box-sizing: border-box;
   }
-    a {
+  h1,h2,h3,h4, button {
+    font-family: 'Spartan', open-sans;
+  }
+  a {
     color: ${({ theme }) => theme?.text || 'grey'};
-    text-shadow: 0 0 2px ${({ theme }) => theme?.text || 'grey'};
   }
   *:visited {
     color: ${({ theme }) => theme?.text || 'grey'};
-    text-shadow: 0 0 2px ${({ theme }) => theme?.text || 'grey'};
   }
   :root {
     --text-color: ${({ theme }) => theme?.text ? theme.text : 'black'};

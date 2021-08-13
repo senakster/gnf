@@ -8,7 +8,8 @@ import Themes from 'components/global/Themes/Themes';
 import { GlobalStyles, themes } from '_themes';
 import { ThemeProvider } from 'styled-components';
 import { have } from '_data/images.json'
-
+import SoMeData from '_data/some.json'
+import SoMe from 'components/ui/SoMe/SoMe';
 
 function App() {
   const [theme, setTheme] = React.useState(themes.find((t) => t.id === 4)?.name || 'omstillingNu');
@@ -20,17 +21,26 @@ function App() {
   }
 
   const title = 'Grønne Nabofællesskaber'
+
   return (
     <div className="App">
       <ThemeProvider theme={themes.find((t) => t.name === theme)?.theme} >
       <GlobalStyles />
-      <Header navigation="true" title={title}
+      <Header navigation="true" 
+          // title={title}
           variant={`fat`}
           backgroundImage={have}
+          logo={[
+            `${process.env.PUBLIC_URL}/logo/gnf-logo.svg`,
+            `${process.env.PUBLIC_URL}/logo/gnf-text.svg`,
+          ]}
+          some={SoMeData}
         // variant={`scrollCollapse`}
       />
 
-      <Themes variant="minimal" theme={theme} handler={handleThemeChange} />
+      <Themes 
+      variant="minimal" 
+      theme={theme} handler={handleThemeChange} />
       {/* <Messages /> */}
       <Router />
 

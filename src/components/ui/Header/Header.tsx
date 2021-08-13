@@ -1,7 +1,10 @@
 import React from 'react';
-import Navigation from '../Navigation/Navigation';
 import styles from './Header.module.scss';
-import { history } from '_helpers'
+
+import { history, navRoute } from '_helpers'
+
+import Navigation from '../Navigation/Navigation';
+import SoMe from '../SoMe/SoMe';
 
 
 
@@ -36,7 +39,6 @@ const Header: React.FC<any> = (props) => {
     <div className={`${styles.Header} ${styles[props.variant]} ${state.collapse ? styles.collapse : ''}`} data-testid={`Headertest`} 
     // {...props}
     >
-    {!props.title && 'Header Component'}
     <div 
     className={styles.bg} 
     style={props.backgroundImage ? {backgroundImage: `url(${props.backgroundImage})`} : {}}>
@@ -44,8 +46,15 @@ const Header: React.FC<any> = (props) => {
     <div className={styles.filter}>
     </div>
     <div className={styles.content}>
-      <h1 className={styles.title}>{`${props.title}`}</h1>
+        {props.logo &&
+          <div className={styles.logo} onClick={() => { navRoute('/') }}>
+            {props.logo.map((l: string, i: number) =>
+              <img key={i} className={`${props.logo}`} src={props.logo[i]} alt={`logo`} />
+            )}
+          </div>}
+      {props.title && <h1 className={`${styles.title} font-face-themed-title`}>{`${props.title}`}</h1>}
       {props.navigation && <Navigation history={history} />}
+      {<SoMe {...props.some}/>}
     </div>
   </div>
 );

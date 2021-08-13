@@ -1,10 +1,39 @@
 .Button {
-    border: 1px solid var(--text-color);
-    border-radius: .3em;
+    // border: 1px solid var(--text-color);
+
+    border: none;
+    // border-radius: .3em;
     padding: .4em;
-    background-color: var(--background-color);
+    margin: 0.1em .1em;
     color: var(--text-color);
+    background: var(--background-color);
     cursor: pointer;
+    transition: all 100ms;
+    position: relative;
+    z-index: 2;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        background: var(--primary-gradient);
+        opacity: .2;
+    }
+    &:hover::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        background: var(--secondary-gradient);
+        opacity: .2;
+    }
     // &:focus, 
     &.fixed-ul{
         position: fixed;
@@ -27,9 +56,9 @@
     }
 
     &:active, &.active {
-        background-color: var(--primary-dark-color);
-        // background: var(--primary-gradient);
-        box-shadow: 0 0 .2em var(--text-color);
-        text-shadow: 0 0 .2em var(--text-color);
+        // background-color: var(--primary-dark-color);
+        background: var(--primary-gradient);
+        // box-shadow: 0 0 .2em var(--text-color);
+        // text-shadow: 0 0 .2em var(--text-color);
     }
 }

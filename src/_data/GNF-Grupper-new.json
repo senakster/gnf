@@ -210,7 +210,7 @@
             "img": ""
         },
         {
-            "id": "Vordingborg 1",
+            "id": "Vordingborg1",
             "type": "bygruppe",
             "navn": "Møn",
             "links": [
@@ -617,7 +617,7 @@
             "img": ""
         },
         {
-            "id": "Vordingborg1",
+            "id": "Vordingborg2",
             "type": "kommunegruppe",
             "navn": "Vordingborg",
             "links": [

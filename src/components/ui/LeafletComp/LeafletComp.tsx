@@ -9,7 +9,6 @@ import {
   // Marker, Popup, Polyline, Polygon, useMapEvents 
 } from 'react-leaflet';
 import { mapTilesets } from '_themes'
-import { compare } from '_helpers/fn'
 import municipalitiesGeoJSON from '_data/denmark-municipalities.json'
 import GNFGrupper from '_data/GNF-Grupper-new.json'
 import config from '_config/config.json'
@@ -68,13 +67,14 @@ const MapControls: React.FC<any> = ({active ,toggleTiles}) => {
     <div className={POSITION_CLASSES.bottomleft}>
       <div className="leaflet-control leaflet-bar">
         <Button onClick={toggleTiles} label={active ? `hide tiles` : `show tiles`}/>
-
       </div>
     </div>
   )
 }
 const GeoData: React.FC = () => {
-  const defaultFill = '#a1d100';
+  const gnfgreen: string = "#1db954"
+  // const defaultFill = '#a1d100';
+  const defaultFill = gnfgreen;
   const highlightFill = `dodgerblue`;
 
   // const map = useMapEvents({
@@ -148,6 +148,8 @@ const GeoData: React.FC = () => {
     layer.options = {
       ...layer.options,
       color: defaultFill,
+      fillColor: groups.length > 0 ? defaultFill : defaultFill,
+
     }
     layer.options = groups.length > 0 ? {
       ...layer.options,

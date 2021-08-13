@@ -1,52 +1,99 @@
 @import url('https://fonts.googleapis.com/css2?family=Spartan:wght@300&display=swap');
 
+
 .Header {
     position: relative;
-    padding: 2em;
-    &.transparent {
-        position: Relative;
-        width: 100%;
-    }
-    &.transparent-fixed {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-    }
-    &.fat {
-        min-height: 10em;
-        height: 50vh;
+    padding: .5em;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+        &.fat {
+        // min-height: 10em;
+        min-height: 50vh;
+        // min-height: 220px;
         overflow: hidden;
-        vertical-align: center;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: column;
-        align-content: center;
-        justify-content: center;
         transition: height 300ms ease-in-out;
     }
-    &.scrollCollapse {
-        min-height: 10em;
-        height: 50vh;
-        overflow: hidden;
-        vertical-align: center;
+    .content {
+        padding: 1em;
+        border-radius: 0.4em;
+        box-shadow: 0 0 2em var(--background-color);
+        background: var(--background-color);
+            .logo {
         display: flex;
         flex-wrap: wrap;
-        flex-direction: column;
-        align-content: center;
-        justify-content: center;
-        transition: height 300ms ease-in-out;
-        &.collapse {
-            min-height: 10em;
-            height: 10vh;
+        // flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-end;
+        cursor: pointer;
+        height: 100%;
+        width: 100%;
+        img {
+            width: min(50%, 150px);
+            &:last-child {
+                width: max(50%, calc(100% - 150px));
+                max-width: 700px;
+                max-height: 150px;
+            }
         }
     }
+    }
+
+// .Header {
+
+//     &.transparent {
+//         position: Relative;
+//         width: 100%;
+//     }
+//     &.transparent-fixed {
+//         position: fixed;
+//         top: 0;
+//         left: 0;
+//         width: 100%;
+//     }
+
+//     &.scrollCollapse {
+//         min-height: 10em;
+//         height: 50vh;
+//         overflow: hidden;
+//         vertical-align: center;
+//         display: flex;
+//         flex-wrap: wrap;
+//         flex-direction: column;
+//         align-content: center;
+//         justify-content: center;
+//         transition: height 300ms ease-in-out;
+//         &.collapse {
+//             min-height: 10em;
+//             height: 10vh;
+//         }
+//     }
     .title {
-        font-size: 1.6em;
-        font-family: 'Spartan', sans-serif; ;
+        font-size: 3em;
+        color: var(--primary-color);
+        font-family: 'Spartan', sans-serif;
+        font-weight: bold;
         text-align: center;
         text-shadow: 0 0 1em var(--background-color);
     }
+
+//     .logo {
+//         // display: flex;
+//         width: 10vw;
+//         min-width: 200px;
+//         min-height: 300px;
+//         position: absolute;
+//         top: 0;
+//         left: 0;
+//         justify-content: center;
+//         overflow: hidden;
+//         flex-wrap: wrap;
+//         background: white;
+//         padding: 1%;
+//         img {
+//             height: 100%;
+//         }
+//     }
     .bg {
         &::before{
             content: '';

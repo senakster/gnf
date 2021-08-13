@@ -19,6 +19,7 @@ const helpers = {
     // parse,
     throttle,
     truncate,
+    sortObjectArray
 }
 
 export default helpers;
@@ -49,7 +50,7 @@ export function navRoute(destination: string): void {
     history.push(destination)
 }
 
-export function throttle (fn: Function, wait: number = 300) {
+export function throttle(fn: Function, wait: number = 300) {
     let inThrottle: boolean,
         lastFn: ReturnType<typeof setTimeout>,
         lastTime: number;
@@ -78,7 +79,7 @@ export function truncate(str: string, n: number, useWordBoundary?: boolean) {
     return (useWordBoundary
         ? subString.substr(0, subString.lastIndexOf(" "))
         : subString) + "&hellip;";
-        // : subString) + "...";
+    // : subString) + "...";
 };
 /**
  * TEXT MANIPULATION
@@ -97,14 +98,15 @@ export function capitalize(text: string): string {
 }
 
 /**
- * Compares two strings
+ * Compares two strings insensitively
  * @param text
  * @returns {string} capitalized string
  */
 export function compare(test: string, sub: string): boolean {
     // console.log('compare')
-    return sub.localeCompare(test, undefined, {sensitivity: 'accent'}) === 0
+    return sub.localeCompare(test, undefined, { sensitivity: 'accent' }) === 0
 }
+
 
 /**
  * Calculates the max value of id key +1 (next id) from array of objects with id key
@@ -131,6 +133,25 @@ export function nextId(AOO: { id: number | string; }[]): number {
  * DATA MANIPULATION
  */
 
+
+
+/**
+ * For use in Array.sort(sortObjectArray)
+ * @param a string
+ * @param b string
+ * @param prop string
+ * @returns {number}
+ */
+export function sortObjectArray(a: string, b: string) {
+    if (a < b) {
+        return -1;
+    }
+    if (a > b) {
+        return 1;
+    }
+    return 0;
+}
+
 /**
  * 
  * Swaps two positions in an array
@@ -139,7 +160,7 @@ export function nextId(AOO: { id: number | string; }[]): number {
  * @param {number} to
  * @returns {array}
  */
-export function swapPositions (array: any[], from: number, to:number): any[] {
+export function swapPositions(array: any[], from: number, to: number): any[] {
     // Make sure a valid array is provided
     const arr = [...array]
     if (Object.prototype.toString.call(arr) !== '[object Array]') {
@@ -179,7 +200,7 @@ export async function canConnect(url: string): Promise<boolean> {
  * @returns {object} json
  */
 export async function embedYT(url: string): Promise<any> {
-    const ncUrl = url.replace(`//www.youtube.com/`,`//www.youtube-nocookie.com/`)
+    const ncUrl = url.replace(`//www.youtube.com/`, `//www.youtube-nocookie.com/`)
     const result = await fetch(`https://www.youtube-nocookie.com/oembed?url=${ncUrl}&format=json`);
     return result.json()
 }
@@ -204,7 +225,7 @@ export function isValidHttpUrl(string: string): boolean {
  * @param {string} url
  * @returns {boolean}
  */
-export function isValidYTHTML(url: string): any{
+export function isValidYTHTML(url: string): any {
     // const ytreg = '/<iframe\.*(?:\b|_).*?(?:\b|_)src=\"https:\/\/www.youtube.com\/(?:\b|_).*?(?:\b|_)iframe>$/'
     // const ytreg = new RegExp('/^<iframe.+?src="https?://www.youtube.com/embed/([a-zA-Z0-9_-]{11})"[^>]+?></iframe>$/')
     const ytreg = new RegExp('/*/')

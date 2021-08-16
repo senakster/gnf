@@ -14,6 +14,7 @@ import GNFGrupper from '_data/GNF-Grupper-new.json'
 import config from '_config/config.json'
 import L, { LatLngBoundsExpression } from 'leaflet';
 import Button from '../Button/Button';
+import { logo } from '_data/images.json'
 
 const LeafletComp: React.FC = () => {
   React.useEffect(() => {
@@ -142,7 +143,7 @@ const GeoData: React.FC = () => {
     // console.log(GNFGrupper.grupper)
     groups.length > 0 && layer.bindPopup(ReactDOMServer.renderToString(<PopContent props={{ ...data.properties, groups: groups }} />))
     // GNFGrupper.grupper.forEach((g) => console.log(g.kommune))
-    console.log(data.properties.name)
+    // console.log(data.properties.name)
     layer.bindTooltip(`${data.properties.name}: ${groups.length} ${groups.length === 1 ? 'gruppe' : 'grupper'}`)
 
     layer.options = {
@@ -173,15 +174,26 @@ const GeoData: React.FC = () => {
 }
 
 const PopContent: React.FC<any> = ({ props }) => {
-  return (<div>
+  return (
+  <div className={styles.popup}>
     <h1>{`${props.name}:`}</h1>
     <ul>
       {props.groups.map((g: any) => {
         return (
           <li key={g.id}>
             {/* {POPUP FORCES STRING - NO ONCLICK} UGLY HREF*/}
-            <a href={`${window.location.pathname}#/group/${g.id}`}>
-              <Button label={g.navn} />
+            <img className={styles.logo} src={logo.replace("%PUBLIC_URL%",process.env.PUBLIC_URL)} alt="logo"/>
+
+
+            {/* <a href={`${window.location.pathname}#/group/${g.id}`}>
+            <Button label={g.navn} 
+            // className={'big'}
+            />
+            </a> */}
+            <span className={`${styles.groupName} themed-title`}>{` ${g.navn}: `}</span>
+            <a href={`${g.links[0]}`} rel="noreferrer" target="_blank">
+              {/* <Button label={g.name} /> */}
+              <img className={styles.linkIcon} src={`${process.env.PUBLIC_URL}/logo/facebook_21.svg`} alt="facebook" />
             </a>
           </li>
         )

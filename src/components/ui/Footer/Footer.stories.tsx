@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import SoMe from './SoMe';
+import Footer from './Footer';
 
-storiesOf('SoMe', module).add('default', () => <SoMe some={[]} />);
+storiesOf('Footer', module).add('default', () => <Footer />);

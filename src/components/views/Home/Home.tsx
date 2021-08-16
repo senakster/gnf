@@ -8,8 +8,9 @@ const Home = () => {
     const navn = g.split('/ ')[1]
     const by = navn.split(' i ')[1]? navn.split(' i ')[0] : navn;
     let kom = (navn.split(' i ')[1] || by);
-    kom = kom.localeCompare('kbh', undefined, {sensitivity: 'accent'}) === 0 || kom.localeCompare('København') === 0 ? 'Københavns' : kom
-    kom = kom.localeCompare('Bornholm') === 0 ? 'Bornholms Regionskommune' : kom
+    kom = kom.localeCompare('kbh', undefined, { sensitivity: 'accent' }) === 0 || kom.localeCompare('København', undefined, { sensitivity: 'accent' }) === 0 ? 'Københavns' : kom
+    kom = kom.localeCompare('Bornholm', undefined, { sensitivity: 'accent' }) === 0 ? 'Bornholms Regionskommune' : kom
+    kom = kom.localeCompare('Faaborg', undefined, { sensitivity: 'accent' }) === 0 ? 'Faaborg-Midtfyn' : kom
     ids[kom] = ids[kom]+1 || 1;
     return {
       id: `${kom}${ids[kom]}`,

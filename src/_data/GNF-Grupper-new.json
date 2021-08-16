@@ -9,7 +9,7 @@
             ],
             "beskrivelse": "Silkeborg Grønne Nabofællesskaber har til formål at skabe lokalt netværk for omstillingsinteresserede folk og familier. Vi ønsker at hjælpe folk til at finde grønne ligesindede i Silkeborg og få endnu flere bæredygtige aktiviteter ud i lokalsamfundet. Vi ved, at det er nemmere at leve bæredygtigt, når man er en del af et grønt fællesskab, og med Grønne Nabofællesskaber gør vi det muligt for alle at indgå i et grønt fællesskab 🌍 Det handler om at inspirere andre og blive inspireret af andre til gode grønne løsninger.",
             "kommune": "Silkeborg Kommune",
-            "img": "https://scontent-cph2-1.xx.fbcdn.net/v/t1.6435-9/p180x540/119550941_185454016436969_5647653142922115145_n.jpg?_nc_cat=106&ccb=1-4&_nc_sid=8631f5&_nc_ohc=wQdN8pGtWrgAX8rtsve&_nc_ht=scontent-cph2-1.xx&oh=cdb16a73bdf722f3dbfb4967ba472df5&oe=613A4E0F"
+            "img": ""
         },
         {
             "id": "Svendborg1",
@@ -20,7 +20,7 @@
             ],
             "beskrivelse": "Svendborg Grønne Nabofællesskaber har til formål at skabe lokalt netværk for omstillingsinteresserede folk og familier. Vi ønsker at hjælpe folk til at finde grønne ligesindede i Svendborg og få endnu flere bæredygtige aktiviteter ud i lokalsamfundet. Vi ved, at det er nemmere at leve bæredygtigt, når man er en del af et grønt fællesskab, og med Grønne Nabofællesskaber gør vi det muligt for alle at indgå i et grønt fællesskab 🌍 Det handler om at inspirere andre og blive inspireret af andre til gode grønne løsninger.",
             "kommune": "Svendborg Kommune",
-            "img": "https://scontent-cph2-1.xx.fbcdn.net/v/t1.6435-9/p180x540/127085758_209697597345944_2456990725649845671_n.jpg?_nc_cat=108&ccb=1-4&_nc_sid=8631f5&_nc_ohc=FBqnqMfhnRgAX9hGimy&_nc_ht=scontent-cph2-1.xx&oh=bd48892b60cf2702d006b4b82b2dd269&oe=613A06A8"
+            "img": ""
         },
         {
             "id": "Egedal1",
@@ -199,14 +199,14 @@
             "img": ""
         },
         {
-            "id": "Faaborg1",
+            "id": "Faaborg-Midtfyn1",
             "type": "kommunegruppe",
             "navn": "Faaborg",
             "links": [
                 "https://www.facebook.com/groups/817357949052066/"
             ],
             "beskrivelse": "Faaborg Grønne Nabofællesskaber har til formål at skabe lokalt netværk for omstillingsinteresserede folk og familier. Vi ønsker at hjælpe folk til at finde grønne ligesindede i Faaborg og få endnu flere bæredygtige aktiviteter ud i lokalsamfundet. Vi ved, at det er nemmere at leve bæredygtigt, når man er en del af et grønt fællesskab, og med Grønne Nabofællesskaber gør vi det muligt for alle at indgå i et grønt fællesskab 🌍 Det handler om at inspirere andre og blive inspireret af andre til gode grønne løsninger.",
-            "kommune": "Faaborg Kommune",
+            "kommune": "Faaborg-Midtfyn Kommune",
             "img": ""
         },
         {
@@ -375,7 +375,7 @@
             "img": ""
         },
         {
-            "id": "Faaborg-Midtfyn1",
+            "id": "Faaborg-Midtfyn2",
             "type": "bygruppe",
             "navn": "Årslev",
             "links": [

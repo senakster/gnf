@@ -6,5 +6,33 @@
     .mapContainer {
         width: 100%;
         height: 100%;
+
+        .popup {
+            $size: 2.5em;
+            $tsize: $size * .8;
+            $bsize: $size * .6;
+            max-width: 300px;
+            li {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                &>* {
+                    margin-right: 5px;
+                }
+            }
+            button {
+                font-size: $bsize;
+            }
+            .groupName {
+                font-size: $tsize;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            }
+            .linkIcon {
+                height: $size;
+            }
+            .logo {
+                width: $bsize;
+            }
+        }
     }
 }

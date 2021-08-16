@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './Card.module.scss';
 import { navRoute } from '_helpers';
+import { logo, title } from '_data/images.json'
+
 
 const Card: React.FC<any> = (props: { data: TGNFG & { variant: string, bgImg: string } }) => {
   const data = props.data;
@@ -10,13 +12,18 @@ const Card: React.FC<any> = (props: { data: TGNFG & { variant: string, bgImg: st
     className={`${styles.Card}  ${styles[data.type]}  ${styles[data.variant]}`} 
     data-testid="Card"
     >
+      <div className={styles.cardImg}>
+        <img src={logo.replace("%PUBLIC_URL%",process.env.PUBLIC_URL)} alt="logo"/>
+        <img src={title.replace("%PUBLIC_URL%", process.env.PUBLIC_URL)} alt="title" />
+      </div>
+
       <div className={styles.container}>
         <div 
         className={styles.bg} 
           style={data.img && data.img.length > 0 ? { backgroundImage: `url(${data.img})` } : data.bgImg? { backgroundImage: `url(${data.bgImg})` } : {}}
         ></div>
         <div className={styles.filter}></div>
-        <h3 className={`${styles.title}`}>Grønne Nabofællesskaber</h3>
+        {/* <h3 className={`${styles.title}`}>Grønne Nabofællesskaber</h3> */}
         <h2 className={`${styles.title} //link`} 
         // onClick={() => { navRoute(`/group/${data.id}`) }}
         >{data.navn}</h2>

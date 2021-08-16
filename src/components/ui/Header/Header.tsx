@@ -4,7 +4,8 @@ import styles from './Header.module.scss';
 import { history, navRoute } from '_helpers'
 
 import Navigation from '../Navigation/Navigation';
-import SoMe from '../SoMe/SoMe';
+// import SoMe from '../SoMe/SoMe';
+import Footer from '../Footer/Footer';
 
 
 
@@ -54,7 +55,6 @@ const Header: React.FC<any> = (props) => {
           </div>}
       {props.title && <h1 className={`${styles.title} font-face-themed-title`}>{`${props.title}`}</h1>}
       {props.navigation && <Navigation history={history} />}
-      {<SoMe {...props.some}/>}
     </div>
   </div>
 );

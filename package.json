@@ -1,6 +1,6 @@
 {
   "name": "gnf-map",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "homepage": "https://omstilmig.nu/gnf-map",
   "private": true,
   "dependencies": {

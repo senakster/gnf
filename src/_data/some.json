@@ -1,9 +1,14 @@
 {
-    "SoMe": [
+    "some": [
         {
             "name": "facebook",
             "url": "https://www.facebook.com/groennenabofaellesskaber",
             "icon": "%PUBLIC_URL%/logo/facebook_21.svg"
+        },
+        {
+            "name": "instagram",
+            "url": "https://www.instagram.com/groenne_nabofaellesskaber/",
+            "icon": "%PUBLIC_URL%/logo/Instagram.svg"
         }
     ]
 }

@@ -1,0 +1,110 @@
+$padding-top: 20px;
+$footerHeight: 100%;
+$fade-in: 400ms;
+
+.Footer {
+    position: fixed;
+    bottom: 0;
+    transform: translateY($footerHeight);
+    // padding-top: $padding-top;
+    left: 0;
+    // height: calc($footerHeight + 20px);
+    min-height: 3.4em;
+    width: 100%;
+    // background-color: transparent;
+    // opacity: .1;
+    transition: bottom $fade-in, transform $fade-in;
+    z-index: 10000;
+        &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        background: var(--primary-gradient);
+        transition: all $fade-in;
+    }
+    &:hover {
+        bottom: 0px;
+        transform: translateY(0vh);
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+        background: var(--primary-gradient);
+        transition: all $fade-in;
+
+    }
+    // transition: all 300ms;
+    }
+    .handle {
+        // content: "handle";
+        // position: absolute;
+        margin-top: -$padding-top;
+        text-align: center;
+        width: 100%;
+        &::before {
+            content: ".....";
+            width: 100%;
+            padding: .2em 2em;
+            background: linear-gradient(transparent, var(--primary-color));
+            border-radius: .1em;
+            opacity: .8;
+            transition: opacity $fade-in;
+        }
+    }
+    &:hover {
+        .handle {
+            &::before {
+                content: ".....";
+                width: 100%;
+                padding: .2em 2em;
+                background: linear-gradient(transparent, var(--primary-color));
+                border-radius: .1em;
+                opacity: 0;
+            }
+        }
+    }
+
+    .container {
+        padding: .4em;
+        opacity: 0;
+        .title {
+        font-size: 1em;
+        }
+        .content{
+        padding: .4em;
+        display: flex;
+        // flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    }
+
+    &:hover {
+    // transition: all 300ms;
+        .container{
+            opacity: 1;
+
+        }
+    }
+
+    .omstillingnu {
+        text-align: center;
+        position: absolute;
+        left: .4em;
+        bottom: .4em;
+        .omstillingnuImg {
+            height: 1.6em;
+        }
+    }
+
+}

@@ -61,4 +61,8 @@
         // box-shadow: 0 0 .2em var(--text-color);
         // text-shadow: 0 0 .2em var(--text-color);
     }
+
+    &.big {
+        font-size: 1.6em;
+    }
 }

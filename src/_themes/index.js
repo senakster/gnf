@@ -45,11 +45,14 @@ export const GlobalStyles = createGlobalStyle`
   *::before {
     box-sizing: border-box;
   }
-  h1,h2,h3,h4, button {
+  h1,h2,h3,h4, button, .themed-title {
     font-family: 'Spartan', open-sans;
   }
   a {
     color: ${({ theme }) => theme?.text || 'grey'};
+  }
+  a:hover {
+    opacity: .87;
   }
   *:visited {
     color: ${({ theme }) => theme?.text || 'grey'};

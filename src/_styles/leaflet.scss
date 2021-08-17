@@ -3,5 +3,15 @@
 .leaflet-container {
     /* background-color: var(--background-color); */
     background-color: inherit;
+}
 
+.leaflet-popup {
+    .leaflet-popup-content-wrapper {
+        background: var(--background-color);
+        color: var(--text-color);
+    }
+    .leaflet-popup-tip {
+        background: var(--background-color);
+        color: var(--text-color);
+    }
 }

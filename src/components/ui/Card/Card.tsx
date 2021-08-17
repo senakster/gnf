@@ -3,9 +3,12 @@ import styles from './Card.module.scss';
 import { navRoute } from '_helpers';
 import { logo, title } from '_data/images.json'
 import QRCode from 'qrcode.react'
+import { DefaultTheme, useTheme } from 'styled-components';
 
 const Card: React.FC<any> = (props: { data: TGNFG & { variant: string, bgImg: string } }) => {
   const data = props.data;
+  const theme = useTheme() as DefaultTheme & { body: string, text: string }
+  console.log(theme.body)
   return (
     <div 
     data-value={data.value}
@@ -28,10 +31,18 @@ const Card: React.FC<any> = (props: { data: TGNFG & { variant: string, bgImg: st
         // onClick={() => { navRoute(`/group/${data.id}`) }}
         >{data.navn}</h2>
         <ul className={styles.content}>
-          <li>
-            {/* <span className={`${styles.description}`}>{data.beskrivelse}</span> */}
-          </li>
-          <li className={styles.qrcode}><QRCode value={data.links[0]} size={160}/></li>
+          {/* <li>
+            <span className={`${styles.description}`}>{data.beskrivelse}</span>
+          </li> */}
+          <li className={styles.qrcode}>
+            <QRCode 
+            value={data.links[0]} 
+            size={160}
+            bgColor={theme.body}
+            fgColor={theme.text}
+            level="L"
+            // string ('L' 'M' 'Q' 'H')	'L'
+            /></li>
           {data.links.map((l, i) =>
             <li key={i}>
               <span className={`${styles.links}`}>

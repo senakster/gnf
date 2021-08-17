@@ -52,8 +52,8 @@ $fade-in: 400ms;
         text-align: center;
         width: 100%;
         &::before {
-            content: ".....";
-            width: 100%;
+            content: "...";
+            // width: 100%;
             padding: .2em 2em;
             background: linear-gradient(transparent, var(--primary-color));
             border-radius: .1em;
@@ -67,7 +67,7 @@ $fade-in: 400ms;
                 content: ".....";
                 width: 100%;
                 padding: .2em 2em;
-                background: linear-gradient(transparent, var(--primary-color));
+                background: linear-gradient(transparent, transparent, var(--primary-color));
                 border-radius: .1em;
                 opacity: 0;
             }

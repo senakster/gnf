@@ -38,9 +38,9 @@ function App() {
         // variant={`scrollCollapse`}
       />
 
-      <Themes 
+      {/* <Themes 
       variant="minimal" 
-      theme={theme} handler={handleThemeChange} />
+      theme={theme} handler={handleThemeChange} /> */}
       {/* <Messages /> */}
       <Router />
       <Footer {...SoMeData} />

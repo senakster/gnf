@@ -8,6 +8,7 @@ import Card from 'components/ui/Card/Card';
 import Button from 'components/ui/Button/Button';
 import { logo, title } from '_data/images.json'
 import QRCode from 'qrcode.react'
+import { DefaultTheme, useTheme } from 'styled-components';
 
 const Group: React.FC = () => {
   const params: { groupId?: string; } = useParams()
@@ -21,7 +22,12 @@ const Group: React.FC = () => {
           <GroupList {...{ kommune, setKommune }} />
           {/* <GroupDetails id={params.groupId} /> */}
           {params.groupId && !kommune &&
-            <GroupDetails id={params.groupId} />
+          <GroupDetails id={params.groupId} />
+          //  GNFGrupper.grupper.filter((g) => g.id === params.groupId)
+          // .map((g) => 
+
+          //   <Card data={{...g}} />
+          // ) 
           }
         </div>
       </div>
@@ -96,38 +102,57 @@ const GroupList: React.FC<TListProps> = ({kommune, setKommune}) => {
 
 const GroupDetails: React.FC<any> = ({ id }) => {
   const g: TGNFG | undefined = GNFGrupper.grupper.find((g) => g.id === id)
-  const [state, setState] = React.useState({ qrsize: window.screen.width > 1024 ? 360 : window.screen.width < 266 ? window.screen.width -10 : 256 })
-  React.useEffect(() => {
-    window.addEventListener('resize', () => { setState({ ...state, qrsize: window.screen.width > 1000 ? 360 : 256 })})
-  return () => { 
-    window.removeEventListener('resize', () => { setState({ ...state, qrsize: window.screen.width > 1000 ? 360 : 256 })})
-  }
-  },[])
   return (
     <div className={styles.details}>
-      <div className={`${styles.detailsContainer}`}>
-      {/* <h2>Grønne Nabofællesskaber</h2> */}
-      <div className={styles.logo}>
-      <img className={styles.logo} src={logo.replace('%PUBLIC_URL%', process.env.PUBLIC_URL)} alt="Grønne Nabofællesskaber" />
-      <img className={styles.logoTitle} src={title.replace('%PUBLIC_URL%', process.env.PUBLIC_URL)} alt="Grønne Nabofællesskaber" />
+      {g?.kommune && 
+      <>
+      <div className={styles.title}><h1>{g.kommune}</h1></div>
+      <div id={`cards`} className={styles.cards}>
+        <Card data={{ ...g }} />
       </div>
-
-      <h1 className={styles.detailTitle}>{g?.navn}</h1>
-      <Button className={styles.closeBtn} label="x" value="/group" onClick={nav} />
-
-      <div className={`${styles.detailsContent}`}>
-        {g?.links && g.links?.map((l: string) =>
-          <div key={l}>
-          <QRCode value={`${g?.links[0]}`} 
-          size={state.qrsize}
-          />
-          <p ><a href={l} target="_blank" rel="noreferrer">{l}</a></p>
-          </div>
-          )}
-        <p>{g?.beskrivelse}</p>
-      </div>
-      </div>
-
+      </>
+      }
     </div>
   )
+
+  // const theme = useTheme() as DefaultTheme & {
+  //   text: string;
+  //   body: string;
+  // };
+  // const [state, setState] = React.useState({ qrsize: window.screen.width > 1024 ? 360 : window.screen.width < 266 ? window.screen.width -10 : 256 })
+  // React.useEffect(() => {
+  //   window.addEventListener('resize', () => { setState({ ...state, qrsize: window.screen.width > 1000 ? 360 : 256 })})
+  // return () => { 
+  //   window.removeEventListener('resize', () => { setState({ ...state, qrsize: window.screen.width > 1000 ? 360 : 256 })})
+  // }
+  // },[])
+  // return (
+  //   <div className={styles.details}>
+  //     <div className={`${styles.detailsContainer}`}>
+  //     {/* <h2>Grønne Nabofællesskaber</h2> */}
+  //     <div className={styles.logo}>
+  //     <img className={styles.logo} src={logo.replace('%PUBLIC_URL%', process.env.PUBLIC_URL)} alt="Grønne Nabofællesskaber" />
+  //     <img className={styles.logoTitle} src={title.replace('%PUBLIC_URL%', process.env.PUBLIC_URL)} alt="Grønne Nabofællesskaber" />
+  //     </div>
+
+  //     <h1 className={styles.detailTitle}>{g?.navn}</h1>
+  //     <Button className={styles.closeBtn} label="x" value="/group" onClick={nav} />
+
+  //     <div className={`${styles.detailsContent}`}>
+  //       {g?.links && g.links?.map((l: string) =>
+  //         <div key={l}>
+  //         <QRCode value={`${g?.links[0]}`} 
+  //         fgColor={theme.text || 'black'}
+  //         bgColor={theme.body || 'white'}
+  //         size={state.qrsize}
+  //         />
+  //         <p ><a href={l} target="_blank" rel="noreferrer">{l}</a></p>
+  //         </div>
+  //         )}
+  //       <p>{g?.beskrivelse}</p>
+  //     </div>
+  //     </div>
+
+  //   </div>
+  // )
 }

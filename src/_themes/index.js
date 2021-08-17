@@ -38,6 +38,7 @@ export const themes = [
   { id: 5, name: 'omstillingNU', theme: t(omstillingnuTheme) },
 ]
 
+export const themeColors = ({ theme }) => t(theme)
 
 export const GlobalStyles = createGlobalStyle`
   *,

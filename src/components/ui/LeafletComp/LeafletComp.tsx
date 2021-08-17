@@ -15,6 +15,7 @@ import config from '_config/config.json'
 import L, { LatLngBoundsExpression } from 'leaflet';
 import Button from '../Button/Button';
 import { logo } from '_data/images.json'
+import { DefaultTheme, useTheme } from 'styled-components';
 
 const LeafletComp: React.FC = () => {
   React.useEffect(() => {
@@ -47,7 +48,7 @@ const LeafletComp: React.FC = () => {
           {...mapTilesets.light}
         />}
         <GeoData />
-        <MapControls active={state.tileLayer} toggleTiles={toggleTiles}/>
+        {/* <MapControls active={state.tileLayer} toggleTiles={toggleTiles}/> */}
       </MapContainer>
     </div>
   );
@@ -73,11 +74,17 @@ const MapControls: React.FC<any> = ({active ,toggleTiles}) => {
   )
 }
 const GeoData: React.FC = () => {
+  const theme = useTheme() as DefaultTheme & { 
+    body: string, 
+    text: string,
+    primaryColor: string,
+    secondaryColor: string,
+   }
   const gnfgreen: string = "#1db954"
   // const defaultFill = '#a1d100';
-  const defaultFill = gnfgreen;
-  const highlightFill = `dodgerblue`;
-
+  const defaultFill = theme.primaryColor || gnfgreen
+  const highlightFill = `dodgerblue` || theme.secondaryColor
+  const mapStroke = theme.text || defaultFill
   // const map = useMapEvents({
   //   click: (e) => {
   //     console.log(e)
@@ -148,10 +155,10 @@ const GeoData: React.FC = () => {
 
     layer.options = {
       ...layer.options,
-      color: defaultFill,
+      color: mapStroke,
       fillColor: groups.length > 0 ? defaultFill : defaultFill,
-
     }
+    
     layer.options = groups.length > 0 ? {
       ...layer.options,
       fillOpacity: .5 + .1 * groups.length
@@ -183,8 +190,6 @@ const PopContent: React.FC<any> = ({ props }) => {
           <li key={g.id}>
             {/* {POPUP FORCES STRING - NO ONCLICK} UGLY HREF*/}
             <img className={styles.logo} src={logo.replace("%PUBLIC_URL%",process.env.PUBLIC_URL)} alt="logo"/>
-
-
             <a href={`${window.location.pathname}#/group/${g.id}`}>
             <Button label={g.navn} 
             // className={'big'}

@@ -185,12 +185,12 @@ const PopContent: React.FC<any> = ({ props }) => {
             <img className={styles.logo} src={logo.replace("%PUBLIC_URL%",process.env.PUBLIC_URL)} alt="logo"/>
 
 
-            {/* <a href={`${window.location.pathname}#/group/${g.id}`}>
+            <a href={`${window.location.pathname}#/group/${g.id}`}>
             <Button label={g.navn} 
             // className={'big'}
             />
-            </a> */}
-            <span className={`${styles.groupName} themed-title`}>{` ${g.navn}: `}</span>
+            </a>
+            {/* <span className={`${styles.groupName} themed-title`}>{` ${g.navn}: `}</span> */}
             <a href={`${g.links[0]}`} rel="noreferrer" target="_blank">
               {/* <Button label={g.name} /> */}
               <img className={styles.linkIcon} src={`${process.env.PUBLIC_URL}/logo/facebook_21.svg`} alt="facebook" />

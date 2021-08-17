@@ -72,8 +72,10 @@
             // background: var(--secondary-gradient);
             }
         .content {
-            padding: 2em;
-
+            padding: .4em;
+            .qrcode {
+                text-align: center;
+            }
             .links {
                 word-break: break-all;
             }

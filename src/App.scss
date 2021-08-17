@@ -1,0 +1,45 @@
+/** MEDIA MIXIN - https://raw.githubusercontent.com/eduardoboucas/include-media/master/dist/_include-media.scss */
+@import "/src/_styles/include-media.scss";
+
+/** copy paste when needed :/ */
+$breakpoints: (
+  'phone': 320px,
+  'tablet': 768px,
+  'desktop': 1024px
+) !default;
+
+ul {
+  list-style: none;
+    margin-block-end: 0;
+    margin-block-start: 0;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0px;
+}
+
+.placeholder {
+  opacity: .3;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.link {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+  .container {
+      margin: .4em;
+  }
+@include media(">phone", "<=tablet") {
+  .container {
+      margin: 1em;
+  }
+}
+@include media(">tablet") {
+  .container {
+      margin: 2em;
+  }
+}

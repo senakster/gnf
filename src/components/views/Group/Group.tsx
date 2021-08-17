@@ -6,7 +6,8 @@ import { useParams } from 'react-router-dom';
 import { nav } from '_helpers/fn';
 import Card from 'components/ui/Card/Card';
 import Button from 'components/ui/Button/Button';
-import { logo as bgImg } from '_data/images.json'
+import { logo, title } from '_data/images.json'
+import QRCode from 'qrcode.react'
 
 const Group: React.FC = () => {
   const params: { groupId?: string; } = useParams()
@@ -15,8 +16,8 @@ const Group: React.FC = () => {
 
   return (
     <div className={styles.Group} data-testid="Group">
-      <div className={styles.container}>
-        <div className={styles.content}>          
+      <div className={`${styles.container} container`}>
+        <div className={`${styles.content} content`}>
           <GroupList {...{ kommune, setKommune }} />
           {/* <GroupDetails id={params.groupId} /> */}
           {params.groupId && !kommune &&
@@ -95,17 +96,36 @@ const GroupList: React.FC<TListProps> = ({kommune, setKommune}) => {
 
 const GroupDetails: React.FC<any> = ({ id }) => {
   const g: TGNFG | undefined = GNFGrupper.grupper.find((g) => g.id === id)
-
+  const [state, setState] = React.useState({ qrsize: window.screen.width > 1024 ? 360 : window.screen.width < 266 ? window.screen.width -10 : 256 })
+  React.useEffect(() => {
+    window.addEventListener('resize', () => { setState({ ...state, qrsize: window.screen.width > 1000 ? 360 : 256 })})
+  return () => { 
+    window.removeEventListener('resize', () => { setState({ ...state, qrsize: window.screen.width > 1000 ? 360 : 256 })})
+  }
+  },[])
   return (
     <div className={styles.details}>
-      <h2>Grønne Nabofællesskaber</h2>
+      <div className={`${styles.detailsContainer}`}>
+      {/* <h2>Grønne Nabofællesskaber</h2> */}
+      <div className={styles.logo}>
+      <img className={styles.logo} src={logo.replace('%PUBLIC_URL%', process.env.PUBLIC_URL)} alt="Grønne Nabofællesskaber" />
+      <img className={styles.logoTitle} src={title.replace('%PUBLIC_URL%', process.env.PUBLIC_URL)} alt="Grønne Nabofællesskaber" />
+      </div>
+
       <h1 className={styles.detailTitle}>{g?.navn}</h1>
       <Button className={styles.closeBtn} label="x" value="/group" onClick={nav} />
-      <div className={styles.detailContent}>
+
+      <div className={`${styles.detailsContent}`}>
         {g?.links && g.links?.map((l: string) =>
-          <p key={l}><a href={l} target="_blank" rel="noreferrer">{l}</a></p>
-        )}
+          <div key={l}>
+          <QRCode value={`${g?.links[0]}`} 
+          size={state.qrsize}
+          />
+          <p ><a href={l} target="_blank" rel="noreferrer">{l}</a></p>
+          </div>
+          )}
         <p>{g?.beskrivelse}</p>
+      </div>
       </div>
 
     </div>

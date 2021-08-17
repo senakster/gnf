@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Card.module.scss';
 import { navRoute } from '_helpers';
 import { logo, title } from '_data/images.json'
-
+import QRCode from 'qrcode.react'
 
 const Card: React.FC<any> = (props: { data: TGNFG & { variant: string, bgImg: string } }) => {
   const data = props.data;
@@ -31,6 +31,7 @@ const Card: React.FC<any> = (props: { data: TGNFG & { variant: string, bgImg: st
           <li>
             {/* <span className={`${styles.description}`}>{data.beskrivelse}</span> */}
           </li>
+          <li className={styles.qrcode}><QRCode value={data.links[0]} size={160}/></li>
           {data.links.map((l, i) =>
             <li key={i}>
               <span className={`${styles.links}`}>

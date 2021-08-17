@@ -1,6 +1,6 @@
 import React from 'react';
 // import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 import Router from 'components/global/Router/Router';
 // import Messages from 'components/global/Messages/Messages';
 import Header from 'components/ui/Header/Header';

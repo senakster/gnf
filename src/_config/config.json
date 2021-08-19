@@ -1,7 +1,8 @@
 {
     "app": {
         "homepage": "https://omstilmig.nu/gnf-map",
-        "basename": "gnf-map"
+        "basename": "gnf-map",
+        "dataurl": "https://omstilmig.nu/public/gnfgrupper.json"
     },
     "map": {
         "centerDefault": {

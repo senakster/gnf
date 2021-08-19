@@ -4,6 +4,7 @@ import { navRoute } from '_helpers';
 import { logo, title } from '_data/images.json'
 import QRCode from 'qrcode.react'
 import { DefaultTheme, useTheme } from 'styled-components';
+import { capitalize } from '_helpers';
 
 const Card: React.FC<any> = (props: { data: TGNFG & { variant: string, bgImg: string } }) => {
   const data = props.data;
@@ -14,6 +15,7 @@ const Card: React.FC<any> = (props: { data: TGNFG & { variant: string, bgImg: st
     data-value={data.value}
     className={`${styles.Card}  ${styles[data.type]}  ${styles[data.variant]}`} 
     data-testid="Card"
+    style={{order: data.type === 'lokalgruppe'? 1 : 0}}
     >
       <div className={styles.cardImg}>
         <img src={logo.replace("%PUBLIC_URL%",process.env.PUBLIC_URL)} alt="logo"/>
@@ -29,7 +31,11 @@ const Card: React.FC<any> = (props: { data: TGNFG & { variant: string, bgImg: st
         {/* <h3 className={`${styles.title}`}>Grønne Nabofællesskaber</h3> */}
         <h2 className={`${styles.title} //link`} 
         // onClick={() => { navRoute(`/group/${data.id}`) }}
-        >{data.navn}</h2>
+        >{capitalize(data.navn)}</h2>
+
+        {/* GRUPPE TYPE */}
+        {/* <h4 className={`${styles.title}`}>{capitalize(data.type)}</h4> */}
+
         <ul className={styles.content}>
           {/* <li>
             <span className={`${styles.description}`}>{data.beskrivelse}</span>

@@ -1,8 +1,7 @@
 import React from 'react';
 import styles from './Group.module.scss';
-import GNFGrupper from '_data/GNF-Grupper-new.json'
+import GNFGrupper from '_data'
 import { useParams } from 'react-router-dom';
-
 import { nav } from '_helpers/fn';
 import Card from 'components/ui/Card/Card';
 import Button from 'components/ui/Button/Button';
@@ -12,18 +11,23 @@ import { DefaultTheme, useTheme } from 'styled-components';
 
 const Group: React.FC = () => {
   const params: { groupId?: string; } = useParams()
-
+  const [ state, setState ] = React.useState( {grupper: GNFGrupper.grupper} )
   const [kommune, setKommune] = React.useState((null) as string | null);
 
+  React.useEffect( () => {
+    GNFGrupper.getGrupper().then((r) => {
+      setState({...state, grupper: [...r.data.grupper]})
+    })
+  },[])
   return (
     <div className={styles.Group} data-testid="Group">
       <div className={`${styles.container} container`}>
         <div className={`${styles.content} content`}>
-          <GroupList {...{ kommune, setKommune }} />
+          <GroupList {...{ grupper: state.grupper, kommune, setKommune }} />
           {/* <GroupDetails id={params.groupId} /> */}
           {params.groupId && !kommune &&
-          <GroupDetails id={params.groupId} />
-          //  GNFGrupper.grupper.filter((g) => g.id === params.groupId)
+            <GroupDetails id={params.groupId} grupper={state.grupper} />
+          //  state.grupper.filter((g) => g.id === params.groupId)
           // .map((g) => 
 
           //   <Card data={{...g}} />
@@ -39,10 +43,11 @@ const Group: React.FC = () => {
 export default Group;
 
 type TListProps = {
+  grupper: typeof GNFGrupper.grupper;
   kommune: string | null;
   setKommune: (arg: string) => void;
 }
-const GroupList: React.FC<TListProps> = ({kommune, setKommune}) => {
+const GroupList: React.FC<TListProps> = ({grupper, kommune, setKommune}) => {
   const [filter, setFilter] = React.useState(null as string | null);
 
   function onlyUnique(value: string, index: number, self: any) {
@@ -65,6 +70,7 @@ const GroupList: React.FC<TListProps> = ({kommune, setKommune}) => {
   function kFilter(sub: string){
     return !filter ? false : sub.toUpperCase().indexOf(filter.toUpperCase()) > -1
   }
+
   return (
     <>
       <div id="kommuneSearch" className={styles.kommuneFilter}>
@@ -73,7 +79,7 @@ const GroupList: React.FC<TListProps> = ({kommune, setKommune}) => {
       </div>
       
       <div className={`${styles.list} ${filter ? '' : styles.filtered}`}>
-        {GNFGrupper && GNFGrupper.grupper.map((g) => g.kommune)
+        {grupper && grupper.map((g) => g.kommune)
         .filter(onlyUnique)
         .filter(kFilter)
         .sort()
@@ -84,8 +90,9 @@ const GroupList: React.FC<TListProps> = ({kommune, setKommune}) => {
       {kommune && <div className={styles.title}><h1>{kommune}</h1></div>}
 
       <div id={`cards`} className={styles.cards}>
-        {kommune && GNFGrupper.grupper
+        {kommune && grupper
           .filter((g) => g.kommune === kommune)
+          .sort()
           .map((g, i) => {
             return <Card key={i} data={{ 
               ...g, 
@@ -100,8 +107,8 @@ const GroupList: React.FC<TListProps> = ({kommune, setKommune}) => {
   )
 }
 
-const GroupDetails: React.FC<any> = ({ id }) => {
-  const g: TGNFG | undefined = GNFGrupper.grupper.find((g) => g.id === id)
+const GroupDetails: React.FC<{id: string,grupper: typeof GNFGrupper.grupper}> = ({ id, grupper }) => {
+  const g: TGNFG | undefined = grupper.find((g) => g.id === id)
   return (
     <div className={styles.details}>
       {g?.kommune && 

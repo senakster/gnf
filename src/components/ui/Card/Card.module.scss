@@ -8,7 +8,10 @@
     box-shadow: -.2em .4em 1em black;
     // cursor: pointer;
     margin: .5em;
-    transition: transform 100ms linear;
+    transition: transform 100ms linear, box-shadow 200ms;
+    .kommunegruppe {
+        background: var(--secondary-dark-color);
+    }
     .cardImg {
         background: var(--background-color);
         img {
@@ -23,7 +26,8 @@
         transition: background-size 200ms linear;
     }
     &:hover {
-        transform: scale(1.0);
+        transform: scale(1.01);
+        box-shadow: -.3em .6em 1.5em black;;
     }
     ul {
         list-style: none;
@@ -33,7 +37,10 @@
     margin-inline-end: 0px;
     padding-inline-start: 0px;
     }
-        .container {
+    .kommunegruppe {
+        margin: auto;
+    }
+    .container {
             // padding: 2em;
 
     .bg {

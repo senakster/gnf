@@ -10,7 +10,7 @@ import {
 } from 'react-leaflet';
 import { mapTilesets } from '_themes'
 import municipalitiesGeoJSON from '_data/denmark-municipalities.json'
-import GNFGrupper from '_data/GNF-Grupper-new.json'
+import GNFGrupper from '_data'
 import config from '_config/config.json'
 import L, { LatLngBoundsExpression } from 'leaflet';
 import Button from '../Button/Button';
@@ -18,14 +18,18 @@ import { logo } from '_data/images.json'
 import { DefaultTheme, useTheme } from 'styled-components';
 
 const LeafletComp: React.FC = () => {
+  const [state, setState] = React.useState({ tileLayer: false, grupper: false as typeof GNFGrupper.grupper | false })
+
   React.useEffect(() => {
     window.scrollTo({
       top: window.innerHeight*.5,
       left: 0,
       behavior: 'smooth'
     });
+      GNFGrupper.getGrupper().then((r) => {
+        setState({ ...state, grupper: [...r.data.grupper] })
+      })
   },[])
-  const [state, setState] = React.useState({tileLayer: false})
 
   function toggleTiles () {
     setState({
@@ -33,10 +37,10 @@ const LeafletComp: React.FC = () => {
       tileLayer: !state.tileLayer
     })
   }
-
+  console.log(state.grupper)
   const c: L.LatLng = new L.LatLng(config.map.centerDefault.lat, config.map.centerDefault.lng);
   return (
-    <div id='' className={styles.LeafletComp} data-testid="LeafletComp">
+    state.grupper ? <div id='' className={styles.LeafletComp} data-testid="LeafletComp">
       <MapContainer
         className={styles.mapContainer}
         center={[c.lat, c.lng]}
@@ -47,10 +51,10 @@ const LeafletComp: React.FC = () => {
           // {...mapTilesets.dark}
           {...mapTilesets.light}
         />}
-        <GeoData />
+        <GeoData grupper={state.grupper}/>
         {/* <MapControls active={state.tileLayer} toggleTiles={toggleTiles}/> */}
       </MapContainer>
-    </div>
+    </div> : null
   );
 }
 
@@ -73,7 +77,7 @@ const MapControls: React.FC<any> = ({active ,toggleTiles}) => {
     </div>
   )
 }
-const GeoData: React.FC = () => {
+const GeoData: React.FC<{grupper: typeof GNFGrupper.grupper}> = ({grupper}) => {
   const theme = useTheme() as DefaultTheme & { 
     body: string, 
     text: string,
@@ -133,7 +137,7 @@ const GeoData: React.FC = () => {
     })
   }
   function mouseleaveColor(event: L.LeafletMouseEvent) {
-    const groups = GNFGrupper.grupper?.filter((gg) => 
+    const groups = grupper?.filter((gg) => 
       gg.kommune.toUpperCase() === event.target.feature.properties.name.toUpperCase()
     // compare(gg.kommune, event.target.feature.properties.name)
     );
@@ -144,7 +148,7 @@ const GeoData: React.FC = () => {
   }
 
   function onEachMunicipality(data: any, layer: L.Layer | any) {
-    const groups = GNFGrupper.grupper?.filter((gg) => 
+    const groups = grupper?.filter((gg) => 
     gg.kommune.toUpperCase() === data.properties.name.toUpperCase()
     );
     // console.log(GNFGrupper.grupper)

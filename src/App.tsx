@@ -43,7 +43,7 @@ function App() {
       theme={theme} handler={handleThemeChange} /> */}
       {/* <Messages /> */}
       <Router />
-      <Footer {...SoMeData} />
+        <Footer {...SoMeData} variant={'someOnly'} />
       </ThemeProvider>
     </div>
   );

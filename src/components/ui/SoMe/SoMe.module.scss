@@ -1,11 +1,13 @@
 .SoMe {
     position: absolute;
+    
     &.fixed {
     position: fixed;
     z-index: 10001;
     }
-    bottom: .4em;
-    right: .4em;
+    
+    bottom: .2em;
+    right: .2em;
     // height: 30px;
     // width: 30px;
     ul {

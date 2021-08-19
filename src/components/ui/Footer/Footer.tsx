@@ -4,8 +4,8 @@ import SoMe from '../SoMe/SoMe';
 import styles from './Footer.module.scss';
 
 const Footer: React.FC<any> = ({ ...props }) => (
-  <div className={styles.Footer} data-testid="Footer">
-    <div className={styles.handle}></div>
+  <div className={`${styles.Footer} ${styles[props.variant]}`} data-testid="Footer">
+    {props.collapse === 'collapse' && <div className={styles.handle}></div>}
 
     <div className={styles.container}>
       {/* TITLE */}
@@ -13,19 +13,23 @@ const Footer: React.FC<any> = ({ ...props }) => (
 
       {/* CONTENT */}
       <div className={styles.content}>
-        <ul>
+        {/* <ul className={styles.colab}>
             <li>
-              {/* Samarbejder */}
             </li>
-        </ul>
+        </ul> */}
+        {/* <ul className={styles.meta}>
+            <li>
+            </li>
+        </ul> */}
       </div>
 
     </div>
 
     {/* SCIAL MEDIA */}
-    {props.some && <SoMe some={[...props.some]} />}
+    {props.some && <SoMe variant={'fixed'} some={[...props.some]} />}
+
     {/* OMSTILLING.NU */}
-    <div className={styles.omstillingnu}>
+    {/* <div className={styles.omstillingnu}>
       <ul>
         <li>
           <a href="//omstilling.nu" rel="noreferrer" target="_blank">
@@ -33,7 +37,7 @@ const Footer: React.FC<any> = ({ ...props }) => (
           </a>
         </li>
       </ul>
-    </div>
+    </div> */}
   </div>
 );
 

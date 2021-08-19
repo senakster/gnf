@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './SoMe.module.scss';
 
 export type SoMeProps = {
+  variant: string;
   some: { 
     name: string;
     url: string;
@@ -9,9 +10,9 @@ export type SoMeProps = {
   }[]
 }
 const SoMe: React.FC<SoMeProps> = (props) => {
-  console.log(props)
+  // console.log(props)
   return (
-    <div className={styles.SoMe} data-testid="SoMe">
+    <div className={`${styles.SoMe} ${styles[props.variant]}`} data-testid="SoMe">
       <ul>
       {/* {JSON.stringify(props)} */}
         {props.some.map((s: {name: string; url: string; icon: string}) => 

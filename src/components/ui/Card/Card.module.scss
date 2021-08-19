@@ -37,12 +37,6 @@
     margin-inline-end: 0px;
     padding-inline-start: 0px;
     }
-    .kommunegruppe {
-        margin: auto;
-    }
-    .container {
-            // padding: 2em;
-
     .bg {
         position: absolute;
         top: 0;
@@ -55,6 +49,15 @@
         background-repeat: no-repeat;
         z-index: -2;
     }
+    &.kommunegruppe {
+        .bg{
+        background: var(--primary-gradient);
+        }
+    }
+    .container {
+            // padding: 2em;
+
+
     .filter {
         position: absolute;
         top: 0;

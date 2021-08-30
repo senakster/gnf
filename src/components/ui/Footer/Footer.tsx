@@ -1,44 +1,75 @@
 import React from 'react';
-// import { navRoute } from '_helpers/fn';
+import conf from '_config';
 import SoMe from '../SoMe/SoMe';
 import styles from './Footer.module.scss';
 
-const Footer: React.FC<any> = ({ ...props }) => (
-  <div className={`${styles.Footer} ${styles[props.variant]}`} data-testid="Footer">
-    {props.collapse === 'collapse' && <div className={styles.handle}></div>}
+const Footer: React.FC<any> = ({ ...props }) => {
+  const [state, setState] = React.useState({ active: false });
+
+  React.useEffect(() => {
+    function footerLeave(e: MouseEvent) {
+      !!!(e.target as Element).closest(`.${styles.Footer}`) && setState({
+        ...state,
+        active: false,
+      });
+    }
+    window.addEventListener('click', footerLeave)
+    return () => { window.removeEventListener('click', footerLeave)}
+  },[])
+
+
+  function toggleActive(){
+    setState({
+      ...state,
+      active: !state.active
+    })
+  }
+  return (
+    <div className={`${styles.Footer} ${styles[props.variant]} ${state.active && styles.active}`} data-testid="Footer">
+      {props.variant === 'collapse' && <div className={styles.handle} onClick={toggleActive}></div>}
 
     <div className={styles.container}>
-      {/* TITLE */}
-      {/* <h2 className={`pointer ${styles.title}`} onClick={() => { navRoute('/') }}>Grønne Nabofællesskaber</h2> */}
-
       {/* CONTENT */}
       <div className={styles.content}>
-        {/* <ul className={styles.colab}>
-            <li>
+        {/* MAIN CONTENT */}
+          <ul className={styles.stuff}>
+            {/* KONTAKT  */}
+            <li className={`${styles.kontakt}`}>
+              <span className={`${styles.kontaktTitle} themed-title`}>Omstilling NU</span><br />
+              Dronningensgade 14<br />
+              1420 København K<br />
+              <a href="mailto:info@omstilling.nu">info@omstilling.nu</a>
             </li>
-        </ul> */}
-        {/* <ul className={styles.meta}>
+          </ul>
+
+          {/* META ELEMENTS */}
+        <ul className={styles.meta}>
+            {/* OMSTILLING.NU */}
             <li>
+              <div className={styles.omstillingnu}>
+                <a href="//omstilling.nu" rel="noreferrer" target="_blank">
+                  <img className={styles.omstillingnuImg} src={`${process.env.PUBLIC_URL}/logo/ON-LOGO-01.svg`} alt="Omstilling.nu" />
+                </a>
+              </div>
             </li>
-        </ul> */}
+            {/* VERSION */}
+            <li className={styles.version}>
+              <span>version: {conf.app.version}</span>
+              <br />
+              <span>&copy; {new Date().getFullYear()}</span>
+            </li>
+
+            {/* SoMe */}
+            <li className={styles.some}>
+              <SoMe />
+            </li>
+            
+
+        </ul>
       </div>
-
     </div>
-
-    {/* SCIAL MEDIA */}
-    {props.some && <SoMe variant={'fixed'} some={[...props.some]} />}
-
-    {/* OMSTILLING.NU */}
-    {/* <div className={styles.omstillingnu}>
-      <ul>
-        <li>
-          <a href="//omstilling.nu" rel="noreferrer" target="_blank">
-            <img className={styles.omstillingnuImg} src={`${process.env.PUBLIC_URL}/logo/ON-LOGO-01.svg`} alt="Omstilling.nu" />
-          </a>
-        </li>
-      </ul>
-    </div> */}
   </div>
 );
+}
 
 export default Footer;

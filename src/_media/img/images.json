@@ -1,0 +1,17 @@
+{
+    "have": "https://www.omstilling.nu/wp-content/uploads/2013/08/timthumb.jpg",
+    "mark": "https://www.omstilling.nu/wp-content/uploads/2018/10/dylan-de-jonge-449577-unsplash-2.jpg",
+    "logo": {
+        "id": "gnf-logo", 
+        "url": "%PUBLIC_URL%/logo/gnf-logo.svg"
+        },
+    "title": {
+        "id": "gnf-text",
+        "url": "%PUBLIC_URL%/logo/gnf-text.svg"
+        },
+    "sprites": "_media/img/svg-defs.svg",
+    "viewboxes": {
+        "gnf-logo": [400,400],
+        "gnf-text": [897,193]
+    }
+}

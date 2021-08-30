@@ -1,1 +1,68 @@
-.Messages {}
+$fade-duration: 2000ms;
+.Messages {
+    position: fixed;
+    bottom: 2em;
+    width: 90vw;
+    max-width: 400px;
+    left: 50%;
+    transform: translate(-50%);
+    text-align: center;
+    z-index: 10002;
+    visibility: hidden;
+    transition: transform $fade-duration;
+    &.dormant{
+        visibility: hidden;
+        opacity: 0;
+    }
+    &.rolling{
+        visibility: visible;
+        opacity: 1;
+    }
+    &.ending {
+        visibility: visible;
+        opacity: 1;
+        animation: fadeOut 1000ms linear 3000ms forwards;
+    }
+    .container {
+        width: 100%;
+        border-radius: 1em;
+        box-shadow: .1em .1em .4em black;
+        margin: auto;
+        // border: 1px solid green;
+        background: var(--secondary-dark-color);
+        .content {
+            // border: 1px solid yellow;
+            // display: flex;
+            // justify-content: center;
+            // align-items: center;   
+            padding: 1em; 
+            font-size: 75%; 
+            .title {
+
+            }
+            .body {
+
+            }
+            .order {
+                position: absolute;
+                top: 1.6em;
+                right: 1.6em;
+                font-size: 50%;
+            }
+            .id {
+                font-size: 50%;
+            }
+        }
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        visibility: visible;
+        opacity: 1;
+    } to {
+        opacity: 0;
+        visibility: hidden;
+    }
+    
+}

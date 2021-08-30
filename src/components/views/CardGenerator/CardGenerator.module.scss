@@ -1,0 +1,12 @@
+.CardGenerator {
+    .result {
+        padding: 2em 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .error {
+        color: red; 
+        font-size: 120%;
+    }
+}

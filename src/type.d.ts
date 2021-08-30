@@ -12,3 +12,7 @@ type TGNFG = {
     onClick?: () => void;
     value?: string | number; 
 }
+type IReduceCall = {
+    type: string;
+    payload?: string | number;
+}

@@ -1,22 +1,116 @@
+$iconSize: 1.6em;
+$morphTime: 200ms;
+
 .SoMe {
-    position: absolute;
-    
-    &.fixed {
-    position: fixed;
-    z-index: 10001;
+    position: relative;
+    // width: 100%;
+    // height: 100%;
+    // text-align: right;
+    .title {
+        font-size: $iconSize;
+        font-weight: bold;
     }
-    
-    bottom: .2em;
-    right: .2em;
-    // height: 30px;
-    // width: 30px;
-    ul {
+    .iconList {
+        width: $iconSize * 3 + ($iconSize*.2) * 3 + 3em;
+        padding-left: 2em;
+        // width: 100%;
         display: flex;
-        justify-content: center;
-        align-items: center;
-        li{
-            width: 1.6em;
-            margin: .2em;
+        justify-content: flex-end;
+        align-items: flex-end;
+        flex-wrap: wrap;;
+        margin: 0;
+        li {
+            margin: 0 0 0 ($iconSize*.2);
         }
     }
+    &.fixed {
+        position: fixed;
+        z-index: 10001;
+    }
+    &.header {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: $iconSize;
+        margin: 1em;
+        .title {
+            display: none;
+        }
+        .iconList {
+        li {
+            width: $iconSize;
+            height: $iconSize;
+        }
+        img {
+            filter: grayscale(70%);
+        }
+    }
+        // height: 100%;
+    }
+    &.collapse {
+        position: fixed;
+        z-index: 10001;
+        min-width: $iconSize;
+        min-height: $iconSize;
+        margin: .2em;
+        border-radius: .2em;
+        box-shadow: inset 0 0 2em var(--background-color), 0 0 1em var(--background-color);
+            &::before, &::after {
+                content: '\2630';
+                line-height: $iconSize;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                // text-shadow: 0 0 .2em var(--background-color);
+                text-align: center;
+                // background-color: var(--background-color);
+                // box-shadow: 0 0 1em var(--background-color), 0 0 1em var(--background-color) inset;
+                // backdrop-filter: blur(5px);
+                opacity: .6;
+                transition: opacity $morphTime ease-out;
+
+            }
+            &::after{
+                opacity: 0;
+                content: '\2715';
+            }       
+            .iconList {
+                background-color:yellow;
+                border:1px solid yellow;
+                width: $iconSize;
+                display: flex;
+                flex-wrap: wrap;
+                li {
+                position: absolute;
+                top: calc( (1 + var(--n)) * 1.5 * 1.6em);
+                right: calc( (1 + var(--n)) * 1.2* 1.6em);
+                width: 100%;
+                height: 100%;
+                transition: top $morphTime ease-out;
+                }
+        }    
+            &.active {
+                &::before{
+                    opacity: 0;
+                }
+                &::after{
+                    opacity: .6;
+                }
+                .iconList {
+                li {
+                    top: 0;
+                    // background-color: var(--background-color);
+                    border-radius: .2em;
+                    box-shadow: inset 0 0 1.5em var(--background-color), 0 0 1em var(--background-color) ;
+                    backdrop-filter: blur(5px);
+                }
+            }
+
+            }
+    }
+
+    // bottom: .2em;
+    // right: .2em;
 }

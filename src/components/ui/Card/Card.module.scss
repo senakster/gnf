@@ -14,7 +14,8 @@
     }
     .cardImg {
         background: var(--background-color);
-        img {
+        img, .icon {
+            display: inline-block;
             width: 50%;
         }
         padding: 1em;
@@ -26,7 +27,7 @@
         transition: background-size 200ms linear;
     }
     &:hover {
-        transform: scale(1.01);
+        // transform: scale(1.01);
         box-shadow: -.3em .6em 1.5em black;;
     }
     ul {
@@ -49,9 +50,9 @@
         background-repeat: no-repeat;
         z-index: -2;
     }
-    &.kommunegruppe {
+    &.kommunegruppe, &.Kommunegruppe {
         .bg{
-        background: var(--primary-gradient);
+            background: var(--primary-gradient);
         }
     }
     .container {
@@ -75,6 +76,9 @@
             // padding-bottom: .0em;
             padding-top: 1em;
             margin: 0;
+            &.invisible {
+                opacity: 0;
+            }
             /* Opaque title background */
             // border-bottom: 1px solid var(--text-color);
             // background-color: var(--background-color);

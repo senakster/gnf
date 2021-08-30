@@ -5,7 +5,8 @@ const Error = () => (
   <div className={styles.Error} data-testid="Error">
     <div className={`container`}>
       <div className={`content`}>
-    <h1>Oh, no! The Requested ressource is not available</h1>
+      {/* <h1>Oh, no! The Requested ressource is not available</h1> */}
+      <h1>Siden kan desværre ikke findes</h1>
     </div>
     </div>
 

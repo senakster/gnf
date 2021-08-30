@@ -69,15 +69,12 @@ export const GlobalStyles = createGlobalStyle`
     --secondary-gradient: ${({ theme }) => theme?.secondaryGradient || 'linear-gradient(45deg,white,black)'};
   }
   body {
-    // align-items: center;
+    font-family: 'Poppins', sans-serif;
     background: ${({ theme }) => theme?.body};
     color: ${({ theme }) => theme?.text};
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: center;
     margin: 0;
     padding: 0;
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    // font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     // font-family: BlinkMacSystemFont, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     transition: background 250ms ease-in, color 250ms linear;
   }`

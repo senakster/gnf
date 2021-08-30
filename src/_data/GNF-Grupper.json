@@ -24,7 +24,7 @@
         },
         {
             "id": "Egedal1",
-            "type": "bygruppe",
+            "type": "lokalgruppe",
             "navn": "Stenløse",
             "links": [
                 "https://www.facebook.com/groups/2696002240713719/"
@@ -35,7 +35,7 @@
         },
         {
             "id": "Guldborgsund1",
-            "type": "bygruppe",
+            "type": "lokalgruppe",
             "navn": "Sakskøbing",
             "links": [
                 "https://www.facebook.com/groups/2695107560809026/"
@@ -57,7 +57,7 @@
         },
         {
             "id": "Egedal2",
-            "type": "bygruppe",
+            "type": "lokalgruppe",
             "navn": "Veksø",
             "links": [
                 "https://www.facebook.com/groups/1660593217447363/"
@@ -90,7 +90,7 @@
         },
         {
             "id": "Københavns1",
-            "type": "bygruppe",
+            "type": "lokalgruppe",
             "navn": "Vanløse",
             "links": [
                 "https://www.facebook.com/groups/1008461589626566/"
@@ -101,7 +101,7 @@
         },
         {
             "id": "Gladsaxe1",
-            "type": "bygruppe",
+            "type": "lokalgruppe",
             "navn": "Søborg",
             "links": [
                 "https://www.facebook.com/groups/952387748524537/"
@@ -178,7 +178,7 @@
         },
         {
             "id": "Guldborgsund2",
-            "type": "bygruppe",
+            "type": "lokalgruppe",
             "navn": "Nykøbing F",
             "links": [
                 "https://www.facebook.com/groups/823572178377295/"
@@ -189,7 +189,7 @@
         },
         {
             "id": "Hedensted1",
-            "type": "bygruppe",
+            "type": "lokalgruppe",
             "navn": "Juelsminde",
             "links": [
                 "https://www.facebook.com/groups/821037071982252/"
@@ -211,7 +211,7 @@
         },
         {
             "id": "Vordingborg1",
-            "type": "bygruppe",
+            "type": "lokalgruppe",
             "navn": "Møn",
             "links": [
                 "https://www.facebook.com/groups/816477695560453/"
@@ -222,7 +222,7 @@
         },
         {
             "id": "Vejle1",
-            "type": "bygruppe",
+            "type": "lokalgruppe",
             "navn": "Jelling",
             "links": [
                 "https://www.facebook.com/groups/770491190149123/"
@@ -244,7 +244,7 @@
         },
         {
             "id": "Aarhus1",
-            "type": "bygruppe",
+            "type": "lokalgruppe",
             "navn": "Højbjerg",
             "links": [
                 "https://www.facebook.com/groups/755670908494039/"
@@ -255,7 +255,7 @@
         },
         {
             "id": "Aarhus2",
-            "type": "bygruppe",
+            "type": "lokalgruppe",
             "navn": "Brabrand",
             "links": [
                 "https://www.facebook.com/groups/750523505771800/"
@@ -310,7 +310,7 @@
         },
         {
             "id": "Odense1",
-            "type": "bygruppe",
+            "type": "lokalgruppe",
             "navn": "Odense M",
             "links": [
                 "https://www.facebook.com/groups/569775177014864/"
@@ -332,7 +332,7 @@
         },
         {
             "id": "Aarhus3",
-            "type": "bygruppe",
+            "type": "lokalgruppe",
             "navn": "Lystrup",
             "links": [
                 "https://www.facebook.com/groups/564668744936499/"
@@ -343,7 +343,7 @@
         },
         {
             "id": "Odense2",
-            "type": "bygruppe",
+            "type": "lokalgruppe",
             "navn": "Odense SV",
             "links": [
                 "https://www.facebook.com/groups/546802589315515/"
@@ -387,7 +387,7 @@
         },
         {
             "id": "Faaborg-Midtfyn2",
-            "type": "bygruppe",
+            "type": "lokalgruppe",
             "navn": "Årslev",
             "links": [
                 "https://www.facebook.com/groups/471502800577612/"
@@ -475,7 +475,7 @@
         },
         {
             "id": "Roskilde2",
-            "type": "bygruppe",
+            "type": "lokalgruppe",
             "navn": "Trekroner",
             "links": [
                 "https://www.facebook.com/groups/312613263977290/"
@@ -486,7 +486,7 @@
         },
         {
             "id": "Københavns2",
-            "type": "bygruppe",
+            "type": "kommunegruppe",
             "navn": "København",
             "links": [
                 "https://www.facebook.com/groups/298861987958240/"
@@ -497,7 +497,7 @@
         },
         {
             "id": "Halsnæs2",
-            "type": "bygruppe",
+            "type": "lokalgruppe",
             "navn": "Ølsted",
             "links": [
                 "https://www.facebook.com/groups/288692515588579/"
@@ -508,7 +508,7 @@
         },
         {
             "id": "Helsingør2",
-            "type": "bygruppe",
+            "type": "lokalgruppe",
             "navn": "Hornbæk",
             "links": [
                 "https://www.facebook.com/groups/257596552018283/"
@@ -530,7 +530,7 @@
         },
         {
             "id": "Odense3",
-            "type": "bygruppe",
+            "type": "lokalgruppe",
             "navn": "Odense NV",
             "links": [
                 "https://www.facebook.com/groups/254729459227165/"
@@ -541,7 +541,7 @@
         },
         {
             "id": "Frederikssund2",
-            "type": "bygruppe",
+            "type": "lokalgruppe",
             "navn": "Kyndby Huse",
             "links": [
                 "https://www.facebook.com/groups/231230768194902/"
@@ -574,7 +574,7 @@
         },
         {
             "id": "Københavns3",
-            "type": "bygruppe",
+            "type": "lokalgruppe",
             "navn": "Vesterbro",
             "links": [
                 "https://www.facebook.com/groups/218406673493542/"
@@ -585,7 +585,7 @@
         },
         {
             "id": "Lyngby-Taarbæk1",
-            "type": "bygruppe",
+            "type": "lokalgruppe",
             "navn": "Virum",
             "links": [
                 "https://www.facebook.com/groups/210652043924075/"
@@ -618,7 +618,7 @@
         },
         {
             "id": "Middelfart2",
-            "type": "bygruppe",
+            "type": "lokalgruppe",
             "navn": "Båring",
             "links": [
                 "https://www.facebook.com/groups/172288448172779/"
@@ -658,6 +658,28 @@
             ],
             "beskrivelse": "Høje-Taastrup Grønne Nabofællesskaber har til formål at skabe lokalt netværk for omstillingsinteresserede folk og familier. Vi ønsker at hjælpe folk til at finde grønne ligesindede i Høje-Taastrup og få endnu flere bæredygtige aktiviteter ud i lokalsamfundet. Vi ved, at det er nemmere at leve bæredygtigt, når man er en del af et grønt fællesskab, og med Grønne Nabofællesskaber gør vi det muligt for alle at indgå i et grønt fællesskab 🌍 Det handler om at inspirere andre og blive inspireret af andre til gode grønne løsninger.",
             "kommune": "Høje-Taastrup Kommune",
+            "img": ""
+        },
+        {
+            "id": "Roskilde2",
+            "type": "lokalgruppe",
+            "navn": "Borup",
+            "links": [
+                "https://www.facebook.com/groups/4707403545953733/"
+            ],
+            "beskrivelse": "Borup Grønne Nabofællesskaber har til formål at skabe lokalt netværk for omstillingsinteresserede folk og familier. Vi ønsker at hjælpe folk til at finde grønne ligesindede i Borup og få endnu flere bæredygtige aktiviteter ud i lokalsamfundet. Vi ved, at det er nemmere at leve bæredygtigt, når man er en del af et grønt fællesskab, og med Grønne Nabofællesskaber gør vi det muligt for alle at indgå i et grønt fællesskab 🌍 Det handler om at inspirere andre og blive inspireret af andre til gode grønne løsninger.",
+            "kommune": "Roskilde Kommune",
+            "img": ""
+        },
+        {
+            "id": "Aarhus4",
+            "type": "lokalgruppe",
+            "navn": "Aarhus N",
+            "links": [
+                "https://www.facebook.com/groups/135108815453673"
+            ],
+            "beskrivelse": "Aarhus Grønne Nabofællesskaber har til formål at skabe lokalt netværk for omstillingsinteresserede folk og familier. Vi ønsker at hjælpe folk til at finde grønne ligesindede i Aarhus og få endnu flere bæredygtige aktiviteter ud i lokalsamfundet. Vi ved, at det er nemmere at leve bæredygtigt, når man er en del af et grønt fællesskab, og med Grønne Nabofællesskaber gør vi det muligt for alle at indgå i et grønt fællesskab 🌍 Det handler om at inspirere andre og blive inspireret af andre til gode grønne løsninger.",
+            "kommune": "Aarhus Kommune",
             "img": ""
         }
     ]

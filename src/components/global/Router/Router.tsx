@@ -7,7 +7,7 @@ import { Route, Router, Switch,
   // BrowserRouter, HashRouter 
 } from 'react-router-dom';
 
-const RootComponent = 'Hjem';
+const RootComponent = 'Velkommen';
 const ErrorComponent = 'Error';
 const excludeComponents = ['Error','Gruppe Detailler']
 

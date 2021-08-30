@@ -8,6 +8,10 @@ $breakpoints: (
   'desktop': 1024px
 ) !default;
 
+
+.App {
+  font-family: var(--ff), sans-serif;
+}
 ul {
   list-style: none;
     margin-block-end: 0;
@@ -32,6 +36,9 @@ ul {
 
   .container {
       margin: .4em;
+      .content {
+            min-height: 50vh;
+      }
   }
 @include media(">phone", "<=tablet") {
   .container {

@@ -4,8 +4,7 @@ import styles from './Header.module.scss';
 import { history, navRoute } from '_helpers'
 
 import Navigation from '../Navigation/Navigation';
-// import SoMe from '../SoMe/SoMe';
-import Footer from '../Footer/Footer';
+import SvgIcon from '../SvgIcon/SvgIcon';
 
 
 
@@ -47,10 +46,19 @@ const Header: React.FC<any> = (props) => {
     <div className={styles.filter}>
     </div>
     <div className={styles.content}>
+        
+        {/* <SoMe variant={'header'} /> */}
+
         {props.logo &&
           <div className={styles.logo} onClick={() => { navRoute('/') }}>
-            {props.logo.map((l: string, i: number) =>
-              <img key={i} className={`${props.logo}`} src={props.logo[i]} alt={`logo`} />
+            {props.logo.map((src: {id: string, url: string;}, i: number) =>
+              // <img key={i} className={styles.logoImg} 
+              // src={src.url.replace('%PUBLIC_URL%',process.env.PUBLIC_URL)} 
+              // alt={src.id} />
+
+              <div className={styles.icon}>
+              <SvgIcon {...{id: src.id}} />
+              </div>
             )}
           </div>}
       {props.title && <h1 className={`${styles.title} font-face-themed-title`}>{`${props.title}`}</h1>}

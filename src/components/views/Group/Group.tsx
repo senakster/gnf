@@ -1,37 +1,25 @@
 import React from 'react';
 import styles from './Group.module.scss';
-import GNFGrupper from '_data'
 import { useParams } from 'react-router-dom';
-import { nav } from '_helpers/fn';
 import Card from 'components/ui/Card/Card';
 import Button from 'components/ui/Button/Button';
-import { logo, title } from '_data/images.json'
 import QRCode from 'qrcode.react'
-import { DefaultTheme, useTheme } from 'styled-components';
+import { useStateContext } from '_state';
+import Loading from 'components/global/Loading/Loading';
 
 const Group: React.FC = () => {
   const params: { groupId?: string; } = useParams()
-  const [ state, setState ] = React.useState( {grupper: GNFGrupper.grupper} )
-  const [kommune, setKommune] = React.useState((null) as string | null);
+  const { data } = useStateContext().state.state;
 
-  React.useEffect( () => {
-    GNFGrupper.getGrupper().then((r) => {
-      setState({...state, grupper: [...r.data.grupper]})
-    })
-  },[])
+  const [ kommune, setKommune ] = React.useState((null) as string | null);
+
   return (
     <div className={styles.Group} data-testid="Group">
       <div className={`${styles.container} container`}>
         <div className={`${styles.content} content`}>
-          <GroupList {...{ grupper: state.grupper, kommune, setKommune }} />
-          {/* <GroupDetails id={params.groupId} /> */}
-          {params.groupId && !kommune &&
-            <GroupDetails id={params.groupId} grupper={state.grupper} />
-          //  state.grupper.filter((g) => g.id === params.groupId)
-          // .map((g) => 
-
-          //   <Card data={{...g}} />
-          // ) 
+          {data.grupper.length > 0 ? <GroupList {...{ kommune, setKommune }} /> : <Loading />}
+          {params.groupId && data.grupper.length > 0 && !kommune &&
+            <GroupDetails id={params.groupId} />
           }
         </div>
       </div>
@@ -43,11 +31,12 @@ const Group: React.FC = () => {
 export default Group;
 
 type TListProps = {
-  grupper: typeof GNFGrupper.grupper;
   kommune: string | null;
   setKommune: (arg: string) => void;
 }
-const GroupList: React.FC<TListProps> = ({grupper, kommune, setKommune}) => {
+const GroupList: React.FC<TListProps> = ({kommune, setKommune}) => {
+  // const {state, dispatch } = useStateContext()
+  const { data } = useStateContext().state.state;
   const [filter, setFilter] = React.useState(null as string | null);
 
   function onlyUnique(value: string, index: number, self: any) {
@@ -74,12 +63,12 @@ const GroupList: React.FC<TListProps> = ({grupper, kommune, setKommune}) => {
   return (
     <>
       <div id="kommuneSearch" className={styles.kommuneFilter}>
-        <input type='text' placeholder='Søg Kommune' onChange={filtrerKommuner} onClick={() => { scrollToId("kommuneSearch", "start")}}/>
-        <i className="fa fa-search"></i>
+        <h1>Søg Kommune</h1>
+        <input type='text' placeholder='&#x1F50D;' onChange={filtrerKommuner} onClick={() => { scrollToId("kommuneSearch", "start")}}/>
       </div>
       
       <div className={`${styles.list} ${filter ? '' : styles.filtered}`}>
-        {grupper && grupper.map((g) => g.kommune)
+        {data.grupper && data.grupper.map((g) => g.kommune)
         .filter(onlyUnique)
         .filter(kFilter)
         .sort()
@@ -90,7 +79,7 @@ const GroupList: React.FC<TListProps> = ({grupper, kommune, setKommune}) => {
       {kommune && <div className={styles.title}><h1>{kommune}</h1></div>}
 
       <div id={`cards`} className={styles.cards}>
-        {kommune && grupper
+        {kommune && data.grupper
           .filter((g) => g.kommune === kommune)
           .sort()
           .map((g, i) => {
@@ -107,8 +96,9 @@ const GroupList: React.FC<TListProps> = ({grupper, kommune, setKommune}) => {
   )
 }
 
-const GroupDetails: React.FC<{id: string,grupper: typeof GNFGrupper.grupper}> = ({ id, grupper }) => {
-  const g: TGNFG | undefined = grupper.find((g) => g.id === id)
+const GroupDetails: React.FC<{id: string}> = ({ id }) => {
+  const { data } = useStateContext().state.state;
+  const g: TGNFG | undefined = data.grupper.find((g) => g.id === id)
   return (
     <div className={styles.details}>
       {g?.kommune && 

@@ -1,4 +1,4 @@
-// for use in _helpers/history.ts
 import config from './config.json'
-
-export default config;
+import PackageJson from '../../package.json';
+const data = { ...config, version: PackageJson.version }
+export default data;

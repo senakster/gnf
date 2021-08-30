@@ -1,15 +1,16 @@
 import React from 'react';
 import styles from './Themes.module.scss';
 import { themes } from '_themes'
+import ff from '_fonts'
 import { capitalize } from '_helpers'
 // import { ActionType, useStateContext } from '_state';
 
-const Themes: React.FC<any> = ({ variant, theme, handler }) => {
+const Themes: React.FC<any> = ({ variant, theme, font, handlers }) => {
   const [cbCollapse, setCb] = React.useState(false);
   return (
     <div className={styles.Themes}>
       {variant !== 'minimal' && <h2>{`${capitalize(theme)} Theme`}</h2>}
-      <select onChange={handler}
+      <select onChange={handlers.handleThemeChange}
         value={themes.find((t) => t.name === theme)?.id}>
         {themes.map((t) =>
           <option key={t.id} value={t.id}
@@ -21,6 +22,15 @@ const Themes: React.FC<any> = ({ variant, theme, handler }) => {
             {`${t.name[0].toLocaleUpperCase()}${t.name.slice(1)}`}
           </option>
         )}
+      </select>
+      <select onChange={handlers.handleFontChange}
+        value={font}>
+          {ff.map((f,i) => 
+            <option key={i} value={f} style={{fontFamily: f}}>
+               {f}
+            </option>
+          )}
+
       </select>
       {variant !== 'minimal' && <ColorBox cbCollapse={cbCollapse} setCb={setCb} />}
     </div>

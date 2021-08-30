@@ -1,5 +1,5 @@
 import { history } from "./history";
-// import {v4} from "uuid"
+import {v4} from "uuid"
 // import parse from 'html-react-parser'
 
 /**
@@ -11,7 +11,8 @@ const helpers = {
     navHome,
     navRoute,
     capitalize,
-    // getUUID,
+    compare,
+    getUUID,
     swapPositions,
     canConnect,
     embedYT,
@@ -49,6 +50,7 @@ export function nav(event: any): void {
 export function navRoute(destination: string): void {
     history.push(destination)
 }
+
 
 export function throttle(fn: Function, wait: number = 300) {
     let inThrottle: boolean,
@@ -181,6 +183,15 @@ export function swapPositions(array: any[], from: number, to: number): any[] {
 }
 
 /**
+ * returns universally unique identifier (UUID v4)
+ * https://www.sohamkamani.com/uuid-versions-explained/
+ * @returns {string} UUID
+ */
+export function getUUID(): string {
+    return v4();
+}
+
+/**
  * NETWORKING & VALIDATION
  */
 
@@ -207,7 +218,7 @@ export async function embedYT(url: string): Promise<any> {
 /**
  * is valid url
  * @param {string} string
- * @returns {boolean}
+ * @returns {boolean} boolean
  */
 export function isValidHttpUrl(string: string): boolean {
     let url;

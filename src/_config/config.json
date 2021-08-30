@@ -1,6 +1,7 @@
 {
     "app": {
         "homepage": "https://omstilmig.nu/gnf-map",
+        "version": "0.2.2",
         "basename": "gnf-map",
         "dataurl": "https://omstilmig.nu/public/gnfgrupper.json"
     },

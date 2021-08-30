@@ -3,8 +3,8 @@
     ul.routes {
         display: flex;
         justify-content: center;
+        flex-wrap: wrap;
         list-style: none;
-
         .active button {
         background-color: var(--primary-dark-color);
         // background-color: var(--bg-color);

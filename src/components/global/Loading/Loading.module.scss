@@ -1,0 +1,187 @@
+
+$pulse: 4000ms;
+.Loading {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    min-height: 200px;
+    padding: .2em;
+    background: var(--background-color);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 600px 0 600px 0; 
+    opacity: 0;
+    animation: 
+    fade-in ($pulse*.5) forwards ($pulse*.5), 
+    saturate ($pulse*2) forwards ($pulse*.5),
+    pulse ($pulse*.3) infinite alternate ($pulse);
+    .textContainer{
+	    border: 1px solid rgba(0,0,0,0.1);
+	    border-radius: 50%;
+	    transform: rotate(0deg);
+	    transition: transform 0.7s linear;
+      mix-blend-mode: difference;
+      .text {
+        font-size: 1.6em;
+        font-weight: 800;
+        // font-family: "Poppins", sans-serif;
+        // color: var(--background-color);
+        color: white;
+        text-align: center;
+        padding: 1em;
+        // filter: brightness(80%);
+        // animation: glow 1000ms alternate infinite ease-in-out forwards  ;
+      }
+    }
+    &::before, &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -50%;
+        width: 200%;
+        height: 100%;
+        opacity: .5;
+        z-index: -1;
+    }
+    &::after {
+        animation: swirl1-theme $pulse infinite alternate linear;
+        opacity: .5;
+    }
+    &::before {
+        animation: swirl2-theme ($pulse * .7) infinite alternate linear;
+        opacity: .5;
+    }
+    &.cmyk {
+        &::after {
+        animation: swirl1-cmy $pulse infinite alternate linear;
+    }
+        &::before {
+        animation: swirl2-cmy ($pulse * .7) infinite alternate linear;
+    }
+  }
+  &.rgb {
+      &::after {
+      background: red;
+      animation: swirl1-rgb $pulse infinite alternate linear;
+      }
+      &::before {
+      background: blue;
+      animation: swirl2-rgb ($pulse * .7) infinite alternate linear;
+      }
+  }
+}
+
+@function pow($number, $exponent) {
+  $value: 1;
+
+  @if $exponent > 0 {
+    @for $i from 1 through $exponent {
+      $value: $value * $number;
+    }
+  }
+
+  @return $value;
+}
+@keyframes glow {
+  from {
+    text-shadow: 0 0 0pt var(--background-color);
+  }
+  to {
+    text-shadow: 0 0 8pt var(--background-color);
+  }
+}
+@keyframes calcShadow {
+    @for $i from 0 through 100 {
+    #{$i * 1%} {
+      $d: 50;
+      $z: (-$d + $i);
+      $x: (.1 * pow($z, 3) + .1 * pow($z, 2) + .1*$z) * .001 * 1pt + 0;
+      $y: (1 * pow($z, 2) + 1*$z) * .01 * 1pt - 10;
+      text-shadow: $x $y 4pt var(--background-color);
+    }}
+}
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  } to {
+    transform: rotate(360deg);
+  }
+  
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  } to {
+    opacity: 1;
+  }
+}
+@keyframes pulse {
+  from {
+    opacity: 1;
+  } to {
+    opacity: .7;
+  }
+}
+@keyframes saturate {
+  from {
+    filter: saturate(0%);
+  } to {
+    filter: saturate(100%);
+  }
+}
+
+@keyframes swirl1-theme {
+    @for $i from 0 through 100 {
+    #{$i * 1%} {
+      background:
+        linear-gradient(($i * 2.7 * 1deg + 45),white 38%, var(--secondary-dark-color) 62%);
+        // radial-gradient(circle, var(--secondary-color), var(--primary-dark-color)),
+    }
+  }
+}
+@keyframes swirl2-theme {
+    @for $i from 0 through 100 {
+    #{$i * 1%} {
+      background:
+        linear-gradient(($i * 2.7 * 1deg - 45), var(--primary-color) 38%, var(--secondary-color) 62%);
+    }
+  }
+}
+@keyframes swirl1-rgb {
+    @for $i from 0 through 100 {
+    #{$i * 1%} {
+      background:
+        linear-gradient(($i * 2.7 * 1deg + 45),  transparent 38%, red 62%);
+    }
+  }
+}
+@keyframes swirl2-rgb {
+    @for $i from 0 through 100 {
+    #{$i * 1%} {
+      background:
+        linear-gradient(($i * 2.7 * 1deg - 45), rgb(0, 255, 0) 38%, rgb(0, 0, 255) 62%);
+        // radial-gradient(circle, var(--secondary-color), var(--primary-dark-color)),
+    }
+  }
+}
+@keyframes swirl1-cmy {
+    @for $i from 0 through 100 {
+    #{$i * 1%} {
+      background:
+        linear-gradient(($i * 2.7 * 1deg + 45),  transparent 38%, rgb(255, 0, 255) 62%);
+        // radial-gradient(circle, var(--secondary-color), var(--primary-dark-color)),
+    }
+  }
+}
+@keyframes swirl2-cmy {
+    @for $i from 0 through 100 {
+    #{$i * 1%} {
+      background:
+        linear-gradient(($i * 2.7 * 1deg - 45), rgb(255, 255, 0) 38%, rgb(0, 255, 255) 62%);
+        // radial-gradient(circle, var(--secondary-color), var(--primary-dark-color)),
+    }
+  }
+}

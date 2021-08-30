@@ -1,12 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
-import App from './App';
+import App, { QRApp } from './App';
+// import Storage from 'components/global/Storage/Storage'
 import reportWebVitals from './reportWebVitals';
+import { initialState, StateProvider } from '_state';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <StateProvider value={initialState}>
+      <App />
+      {/* <QRApp /> */}
+    </StateProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

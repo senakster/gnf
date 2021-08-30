@@ -2,15 +2,24 @@ import Axios from 'axios'
 import GNFGrupper from './GNF-Grupper-new.json'
 import { app } from '_config/config.json'
 
-async function getGnfGrupper () {
-    const requestOptions = {
-        headers: {
-            'Content-Type': 'application/json',
-            // ...authHeader()
+export async function getGnfGrupper () {
+    try {
+        const requestOptions = {
+            headers: {
+                'Content-Type': 'application/json',
+                // ...authHeader()
+            }
         }
+        /** FORCE RELOAD */
+        const response = await Axios.get(`${app.dataurl}?v=${new Date().getTime()}`, requestOptions)
+        console.log('Data Collected')
+        // const response = await Axios.get(`${app.dataurl}?v=${new Date().getDate()}`, requestOptions)
+        
+        return response
+    } catch (error) {
+        // console.error(error)
+        return error
     }
-    const response = await Axios.get(`${app.dataurl}?v=${new Date().getTime()}`, requestOptions)
-    return response
 };
 
 export const data = {

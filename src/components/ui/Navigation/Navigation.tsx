@@ -26,7 +26,7 @@ const Navigation: React.FC<any> = ({history}) => {
         {navRoutes.map((r) =>
           <li key={r.path} className={`${r.path}`}>
             <div className="routes">
-              <Button className={`${location === r.path? 'active' : ''}`} label={r.name} value={r.path} onClick={navigate} />
+              <Button className={`${location === r.path? 'active' : ''}`} label={r.name || ''} value={r.path} onClick={navigate} />
             </div>
           </li>
         )}

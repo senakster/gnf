@@ -1,0 +1,122 @@
+.MiyawakiPopup {
+    $size: 2.5em;
+            $tsize: $size * .8;
+            $bsize: $size * .6;
+            max-width: 80vw;
+            overflow: hidden;
+            .modalContainer {
+                position: absolute;
+                top: 0;
+                left:0;
+                width: 100%;
+                background-color: rgba(0,0,0,.7);
+                z-index: 1;
+                > img{ 
+                    width: 100%;
+                }
+            }
+    .name {
+        border-bottom: 1px solid var(--text-color);
+    }
+    .listContent {
+        max-height: calc(90vh - 150px);
+        padding: .4em 0 2em 0;
+        overflow-y: auto;
+        font-size: 90%;
+        display: block;
+        mask-image: linear-gradient(transparent,black 1em, black calc(100% - 2em), transparent);
+            .imgContainer {
+                position: relative;
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: baseline;
+            > div.img, figure.img {
+                margin: 0;
+                padding: .4em;
+                flex: 2 1 25%;
+                max-width: min(100%, 300px);
+            > img {
+                max-width: 100%;
+                cursor: zoom-in;
+            }
+            span, figcaption {
+                font-size: 80%;
+            }
+        }}
+    }
+}
+
+.ModalFigure {
+    width: 100%;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    > img {
+        max-width: 100%;
+        object-fit: contain;
+    }
+    > span, figcaption {
+        position: fixed;
+        opacity: 0;
+        &:hover{opacity: 1;}
+        bottom: 0;
+        left: 0;
+        word-wrap: break-word;
+        padding: 6em 10vw 2em 10vw;
+        max-width: 100%;
+        min-width: 100%;
+        color: white;
+        text-shadow: 0 0 1em black;
+        background: linear-gradient(transparent, black);
+        font-size: 80%;
+        height: 33%;
+        min-height: 6em;
+        overflow-y: auto;
+        transition: opacity 300ms;
+        justify-self: center;
+        mask-image: linear-gradient(transparent, black 2em, black);
+        &::before {
+            z-index: -1;
+            content: '';
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            background-color: rgba(0,0,0,0.5);
+        }
+    }
+    &.active {
+        > img {
+            z-index: 100001;
+            opacity: 1;
+            width: 100%;
+            max-height: 100%;
+        }
+        > span, figcaption {
+            position: fixed;
+            visibility: visible;
+            bottom: 0;
+            left: 0;
+            word-wrap: break-word;
+            padding: 6em 10vw 2em 10vw;
+            max-width: 100%;
+            min-width: 100%;
+            color: white;
+            text-shadow: 0 0 1em black;
+            background: linear-gradient(transparent, black);
+            // opacity: 0;
+            // z-index: 1000001;
+            font-size: 80%;
+            height: 33%;
+            min-height: 6em;
+            overflow-y: auto;
+            transition: opacity 300ms;
+            justify-self: center;
+            mask-image: linear-gradient(transparent, black 2em, black);
+        }
+    }
+}

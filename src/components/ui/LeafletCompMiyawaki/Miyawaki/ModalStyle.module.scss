@@ -1,0 +1,252 @@
+@import "/src/_libs/_styles/include-media.scss";
+
+.MiyawakiModal {
+    // position: fixed;
+    // top: 0;
+    // left: 0;
+    // height: 100%;
+    // max-height: 100vh;
+    // width: 100%;
+    // overflow: hidden;
+    opacity: 0;
+    // z-index: 100000;
+    visibility: hidden;
+    //     // z-index: 1000000;
+    // // background-color: rgba(0,0,0,0.5);
+    // // display: none;
+    // transition: all 300ms;
+    // // padding: .4em;
+    &.active {
+        visibility: visible;
+        opacity: 1;
+    }
+        .closeArea{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+                    > div.modalImg {
+                    > img {
+                        position: fixed;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        object-fit: contain;
+                        max-height: 0%;
+                        width: 0%;
+                        opacity: 0;
+                        cursor: zoom-out;
+                        transition: all 300ms;
+                    }
+                    > span, figcaption {
+                        position: fixed;
+                        z-index: -2;
+                        height: 0;
+                        overflow: hidden;
+                        opacity: 0;
+                        visibility: hidden;
+                    }
+                &.active {
+                    &::before {
+                    z-index: 10001;
+                    content: '';
+                    position: fixed;
+                    height: 100%;
+                    width: 100%;
+                    top: 0;
+                    left: 0;
+                    background-color: rgba(0,0,0,0.5);
+                    }
+                    > img {
+                        z-index: 100001;
+                        // left: 0%;
+                        opacity: 1;
+                        width: 100%;
+                        max-height: 100%;
+                    }
+                    > span, figcaption {
+                        position: fixed;
+                        visibility: visible;
+                        bottom: 0;
+                        left: 0;
+                        word-wrap: break-word;
+                        padding: 6em 10vw 2em 10vw;
+                        max-width: 100%;
+                        min-width: 100%;
+                        color: white;
+                        text-shadow: 0 0 1em black;
+                        background: linear-gradient(transparent, black);
+                        // opacity: 0;
+                        z-index: 1000001;
+                        font-size: 130%;
+                        height: 33%;
+                        min-height: 6em;
+                        overflow-y: auto;
+                        transition: opacity 300ms;
+                        justify-self: center;
+                        mask-image: linear-gradient(transparent, black 2em, black);
+                        &:hover {
+                            opacity: 1;
+                        }
+                    }
+
+                }
+                }
+        .modalContent {
+        position: relative;
+        max-width: calc(768px - 2em);
+        min-width: calc(300px - 1em);
+        // width: 500px;
+        max-height: 90vh;
+        overflow: auto;
+        // mask-image: linear-gradient(transparent, white 5%, white 90%, transparent);
+
+        margin: 1em;
+        padding: .4em;
+        background-color: var(--background-color);
+        border-radius: 1em;        
+        box-shadow: 0 0 2em black;
+        display: block;
+        .name {
+            border-bottom: 1px solid var(--text-color);
+        }
+        .listContent {
+        // max-height: calc(90vh - 150px);
+        padding: .4em 0 2em 0;
+        overflow-y: auto;
+        font-size: 90%;
+        display: block;
+        mask-image: linear-gradient(transparent,black 1em, black calc(100% - 2em), transparent);
+                    .imgContainer {
+            position: relative;
+            width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: baseline;
+            > div.img, figure.img {
+                margin: 0;
+                padding: .4em;
+                flex: 2 1 25%;
+                max-width: min(100%, 300px);
+            > img {
+                max-width: 100%;
+                // flex: 0 1 10%;
+                // min-width: 100px;
+                // max-width: min(100%, 300px);
+                cursor: zoom-in;
+            }
+            span, figcaption {
+                font-size: 80%;
+            }
+
+                // > div.modalImg {
+                //     > img {
+                //         position: fixed;
+                //         top: 50%;
+                //         left: 50%;
+                //         transform: translate(-50%, -50%);
+                //         object-fit: contain;
+                //         max-height: 0%;
+                //         width: 0%;
+                //         opacity: 0;
+                //         cursor: zoom-out;
+                //         transition: all 300ms;
+                //     }
+                //     > span, figcaption {
+                //         position: fixed;
+                //         z-index: -2;
+                //         height: 0;
+                //         overflow: hidden;
+                //         opacity: 0;
+                //         visibility: hidden;
+                //     }
+                // &.active {
+                //     &::before {
+                //     z-index: 10001;
+                //     content: '';
+                //     position: fixed;
+                //     height: 100%;
+                //     width: 100%;
+                //     top: 0;
+                //     left: 0;
+                //     background-color: rgba(0,0,0,0.5);
+                //     }
+                //     > img {
+                //         z-index: 100001;
+                //         // left: 0%;
+                //         opacity: 1;
+                //         width: 100%;
+                //         max-height: 100%;
+                //     }
+                //     > span, figcaption {
+                //         position: fixed;
+                //         visibility: visible;
+                //         bottom: 0;
+                //         left: 0;
+                //         word-wrap: break-word;
+                //         padding: 6em 10vw 2em 10vw;
+                //         max-width: 100%;
+                //         min-width: 100%;
+                //         color: white;
+                //         text-shadow: 0 0 1em black;
+                //         background: linear-gradient(transparent, black);
+                //         // opacity: 0;
+                //         z-index: 1000001;
+                //         font-size: 130%;
+                //         height: 33%;
+                //         min-height: 6em;
+                //         overflow: auto;
+                //         transition: opacity 300ms;
+                //         justify-self: center;
+                //         mask-image: linear-gradient(transparent, black 2em, black);
+                //         &:hover {
+                //             opacity: 1;
+                //         }
+                    // }
+
+                // }
+                // }
+            }
+    }
+    }
+    }
+}
+
+@include media(">phone", "<=tablet") {
+  .MiyawakiModal {
+    .modalContent {
+        margin: 4em 2em;
+        padding: 1em;
+    }
+  }
+}
+@include media(">tablet") {
+  .MiyawakiModal {
+    .modalContent {
+        margin: 4em auto;
+        padding: 2em;
+    }
+  }
+}
+
+@supports (-webkit-overflow-scrolling: touch) {
+  /* CSS specific to iOS devices */ 
+  .MiyawakiModal {
+      .modalContent {
+          .listContent {
+            overflow-y: scroll !important;
+            -webkit-overflow-scrolling: touch !important;
+          }
+      }
+      .modalImg.active {
+          span, figcaption {
+            overflow-y: scroll !important;
+            -webkit-overflow-scrolling: touch !important;
+          }
+      }
+  }
+}

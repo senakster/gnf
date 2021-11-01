@@ -1,5 +1,7 @@
+import CookieSettings from 'components/global/CookieSettings/CookieSettings';
 import React from 'react';
-import conf from '_config';
+import { Button } from 'stories/Button';
+import conf from '_libs/_config';
 import SoMe from '../SoMe/SoMe';
 import styles from './Footer.module.scss';
 
@@ -25,7 +27,7 @@ const Footer: React.FC<any> = ({ ...props }) => {
     })
   }
   return (
-    <div className={`${styles.Footer} ${styles[props.variant]} ${state.active && styles.active}`} data-testid="Footer">
+    <div className={`${styles.Footer} ${styles[props.variant]} ${state.active ? styles.active : styles.inactive}`} data-testid="Footer">
       {props.variant === 'collapse' && <div className={styles.handle} onClick={toggleActive}></div>}
 
     <div className={styles.container}>
@@ -35,10 +37,15 @@ const Footer: React.FC<any> = ({ ...props }) => {
           <ul className={styles.stuff}>
             {/* KONTAKT  */}
             <li className={`${styles.kontakt}`}>
-              <span className={`${styles.kontaktTitle} themed-title`}>Omstilling NU</span><br />
+              <h2>Omstilling NU</h2>
               Dronningensgade 14<br />
               1420 København K<br />
-              <a href="mailto:info@omstilling.nu">info@omstilling.nu</a>
+              <a href="mailto:info@omstilling.nu">info@omstilling.nu</a><br />
+              tlf: 71797100
+            </li>
+            {/* COOKIE SETTINGS  */}
+            <li className={`${styles.cookieSettings}`}>
+              <CookieSettings variant="modal" />
             </li>
           </ul>
 
@@ -63,8 +70,6 @@ const Footer: React.FC<any> = ({ ...props }) => {
             <li className={styles.some}>
               <SoMe />
             </li>
-            
-
         </ul>
       </div>
     </div>

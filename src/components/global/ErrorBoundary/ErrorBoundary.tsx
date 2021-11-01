@@ -1,5 +1,5 @@
 import React, { ErrorInfo } from "react";
-import { Action, ActionType, useStateContext } from "_state";
+import { Action, ActionType, useStateContext } from "_libs/_state";
 
 const Dispatcher: React.FC<Action> = ({type, payload}) => {
   const { dispatch } = useStateContext()
@@ -9,6 +9,7 @@ const Dispatcher: React.FC<Action> = ({type, payload}) => {
       type: type,
       payload: payload,
     })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return null;
 }
@@ -46,7 +47,7 @@ class ErrorBoundary extends React.Component {
           body: this.state.error?.message || ''
         }}
       return <>
-              <h1>Something went wrong.</h1>
+              <h1>Noget gik galt...</h1>
               <Dispatcher {...a} />
             </>;
     }

@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '../Button/Button';
 import styles from './SoMe.module.scss';
-import someData from '_data/some.json'
+import someData from '_libs/_data/some.json'
 export type SoMeProps = {
   variant?: string;
   some?: { 

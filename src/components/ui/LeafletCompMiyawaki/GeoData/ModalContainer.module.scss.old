@@ -1,0 +1,137 @@
+@import "/src/_libs/_styles/include-media.scss";
+
+.ModalContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    max-height: 100vh;
+    width: 100%;
+    overflow: auto;
+    opacity: 0;
+    z-index: 100000;
+    visibility: hidden;
+    background-color: rgba(0,0,0,0.5);
+    transition: all 300ms;
+    &.active {
+        visibility: visible;
+        opacity: 1;
+    }
+    .closeArea{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+    .modalContent {
+        position: relative;
+        max-width: calc(768px - 2em);
+        min-width: calc(300px - 1em);
+        margin: 4em 1em;
+        padding: .4em;
+        font-size: 90%;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: var(--background-color);
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: .94;
+            border-radius: 1em;
+            box-shadow: 0 0 2em black;
+        }
+        // background-color: var(--background-color);
+
+    }
+            $size: 2.5em;
+            $tsize: $size * .8;
+            $bsize: $size * .6;
+            font-size: 120%;
+            // max-width: 80vw;
+            // max-height: 300px;
+            overflow: auto;
+            .municipality {
+                border-bottom: 1px solid var(--text-color);
+            }
+            .kommunegruppe {
+                // background-color: rgba(0,0,0,.1);
+            }
+            li {
+                display: flex;
+                align-items: center;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                > * {
+                    padding: .2em;
+                > * {
+                    padding: .1em;
+                }
+  
+                flex: 0 0;
+
+                &:nth-child(2) {
+                    padding-left: 1em;
+                    flex: 8 1;
+                }
+
+                }
+                
+                .groupName {
+                    font-size: $size * .8;
+                    font-family: 'Lora', serif;
+                }
+
+                .icons {
+                    flex: 4 0;
+                    width: $size;
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+                    flex-direction: row;
+                    flex-wrap: nowrap;
+                }
+            }
+            .joinText {
+                > span::before {
+                    content: "\a";
+                    white-space: pre;
+                }
+                > a {word-break: break-all;}
+            }
+            button {
+                // font-size: $bsize;
+            }
+            // .groupName {
+            //     font-size: $tsize;
+            //     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            // }
+            .linkIcon {
+                height: $size;
+            }
+            .logo, .icon {
+                width: $bsize;
+            }
+}
+
+@include media(">phone", "<=tablet") {
+  .ModalContainer {
+    .modalContent {
+        margin: 4em 2em;
+        padding: 1em;
+    }
+  }
+}
+@include media(">tablet") {
+  .ModalContainer {
+    .modalContent {
+        margin: 4em auto;
+        padding: 2em;
+    }
+  }
+}

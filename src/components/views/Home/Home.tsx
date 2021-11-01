@@ -1,18 +1,35 @@
+// import Loading from 'components/global/Loading/Loading';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './Home.module.scss';
-
-// console.log(`${sprites}#gnf-logo`);
+import config from '_libs/_config/config.json'
 const Home: React.FC = () => {
+  const { t } = useTranslation('home');
   return (
     <div className={styles.Home} data-testid="Home">
     <div className={`${styles.container} container`}>
         <div className={`${styles.content} content`}>
-        <h1>Velkommen</h1>
-        <p>
-          Grønne Nabofællesskaber har til formål at skabe lokalt netværk for omstillingsinteresserede familier. Vi ønsker at hjælpe folk til at finde grønne ligesindede og få endnu flere bæredygtige aktiviteter ud i lokalsamfundet. Vi ved, at det er nemmere at leve bæredygtigt, når man er en del af et grønt fællesskab, og med Grønne Nabofællesskaber gør vi det muligt for alle at indgå i et grønt fællesskab 🌍
-        </p><p>
-          Det handler om at inspirere andre og blive inspireret af andre til gode grønne løsninger.
-        </p>
+          <section>
+            <h1>{t('h1')}</h1>
+            <p>{t('p1')}</p>
+            <p>{t('p2')}</p>
+            <p>{t('p3')}</p>
+            <p>{t('join')}</p>
+            <p>{t('contact')}:</p>
+            <a href={`mailto:${config.contact.email}`}>info@omstilling.nu</a><br />
+            {t('w.or')}<br />
+            <a target="_blank" rel="noreferrer" href={`${config.contact.facebook}`}>www.facebook.com/groennenabofaellesskaber</a><br />
+          </section>
+          <section>
+          <h1>{t('miyawaki.h1')}</h1>
+          <p>{t('miyawaki.p1')}</p>
+          {/* <p>{t('miyawaki.p2')}</p>
+          <p>{t('miyawaki.3')}</p> */}
+            <p>{t('contact')}:</p>
+            <a href={`mailto:${config.contact.email}`}>info@omstilling.nu</a><br />
+            {t('w.or')}<br />
+          <a target="_blank" rel="noreferrer" href={`${config.contact.miyawaki}`}>www.facebook.com/miyawakiskovedk</a><br />
+          </section>
       </div>
     </div>
   </div>

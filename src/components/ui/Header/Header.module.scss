@@ -123,4 +123,64 @@
             background-repeat: no-repeat;
             background-size: cover;
     }
+
+    .topScroll {
+        $fade: 400ms;
+        $size: 2em;
+        position: fixed;
+        bottom: .2em;
+        right: .2em;
+        width: $size;
+        height: $size;
+        border-radius: 50%;
+        overflow: hidden;
+        z-index: 5000;
+        transition: bottom $fade, right $fade;
+
+        &::before {
+            // content: '\1FB0B';
+            content: '-';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            // background: linear-gradient(45deg, var(--primary-color), var(--secondary-dark-color));
+            background-color: var(--secondary-dark-color);
+            opacity: .3;
+            filter: grayscale(80%);
+            transition: opacity $fade, filter $fade;
+            text-align: center;
+            line-height: 2;
+            font-size: $size * .5;
+            color: var(--background-color);
+        }
+
+        &:hover {
+            &::before {
+            opacity: .6;
+            }
+        }
+
+        &.active {
+            bottom: 1.2em;
+            right: .4em;
+            cursor: pointer;
+            &::before {
+                // content: "\2B71";
+                
+                content: '\2191';
+                opacity: .4;
+                font-size: $size;
+                line-height: 1;
+                filter: grayscale(40%);
+            }
+        &:hover {
+            &::before {
+            opacity: .8;
+            }
+        }
+        }
+    }
 }

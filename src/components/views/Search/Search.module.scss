@@ -1,0 +1,86 @@
+@import "/src/_libs/_styles/include-media.scss";
+
+.Search {
+    .content {
+        min-height: 50vh;
+        margin-bottom: 50vh;
+        .kommuneFilter {
+            text-align: center;
+            margin: 1em;
+        }
+        .title {
+            font-size: 1em;
+            text-align: center;
+            width: 100%;
+        }
+        .searchResults {
+            width: 100%;
+            > div {
+                &.list {}
+
+                &.cardList {
+                    text-align: center;
+                }
+            }
+            .searchInputs {
+                margin: auto;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                > div {
+                    display: inline-block;
+                    max-width: 50%;
+                    flex-basis: 1 1 50%;
+                    white-space: nowrap;
+                    > input {
+                        width: 80%;
+                        
+                    }
+                }
+            }
+                .groupsByMunicipality {
+                    > h4 {
+                        span {
+                        color: var(--primary-color);
+                        font-size: 80%;
+                        }
+                    }
+                padding-bottom: 1em;
+                border-bottom: .03em solid var(--primary-color);
+
+                }
+                .list{
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    flex-basis: auto;
+                    flex-wrap: wrap;
+                    padding-bottom: 2em;
+                    border-bottom: .03em solid var(--text-color);
+                     > * {
+                        margin: 0;
+                        box-shadow: inset 0 0 1px black;
+                        flex: var(--flex-base);
+                    }
+                    button {
+                        white-space: nowrap;
+                        max-width: 300px;
+                    }
+                }
+        }
+    }
+}
+
+@include media(">phone", "<=tablet") {
+  .container {
+    --container-margin: 1em;
+    --flex-base: 1 1 33%;
+  }
+}
+@include media(">tablet") {
+  .container {
+    --container-margin: 2em;
+    --flex-base: 1 1 25%;
+      // margin: 2em;
+  }
+}

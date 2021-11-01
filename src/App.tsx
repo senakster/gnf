@@ -3,39 +3,48 @@ import './App.scss';
 
 
 // THEMES
-import { GlobalStyles, themes } from '_themes';
+import { GlobalStyles, themes } from '_libs/_themes';
 import { ThemeProvider } from 'styled-components';
 
 // THEME TESTING
-import ff from '_fonts'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import ff from '_libs/_fonts'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import Themes from 'components/global/Themes/Themes';
 
 // MEDIA
-import { have, sprites, title, logo } from '_media/img/images.json'
+import { have, title, logo } from '_libs/_media/img/images.json'
 
 
 // COMPONENTS
-  //GLOBAL
+//GLOBAL
 import ErrorBoundary from 'components/global/ErrorBoundary/ErrorBoundary';
 import Router from 'components/global/Router/Router';
 import Storage from 'components/global/Storage/Storage';
 import Messages from 'components/global/Messages/Messages';
-  // UI
-import Header from 'components/ui/Header/Header';
-import Footer from 'components/ui/Footer/Footer';
+import Modal from 'components/global/Modal/Modal.lazy';
 
-  //CARDS
+// UI
+import Header from 'components/ui/Header/Header.lazy';
+import Footer from 'components/ui/Footer/Footer.lazy';
+
+//CARDS
+import Map from 'components/views/Map/Map';
 import CardGenerator from 'components/views/CardGenerator/CardGenerator';
 
 
 // STATE
-import { ActionType, useStateContext } from '_state';
-import { getGnfGrupper } from '_data'
+import { ActionType, useStateContext } from '_libs/_state';
+import { getGnfGrupper } from '_libs/_data'
+// import { AxiosResponse } from 'axios';
+// import CookieSettings from 'components/global/CookieSettings/CookieSettings';
 
 const App: React.FC = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [theme, setTheme] = React.useState(themes.find((t) => t.id === 4)?.name || 'gnf');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [font, setFont] = React.useState('Poppins');
-  const { state, dispatch } = useStateContext()
+  const { dispatch } = useStateContext()
   const { data } = useStateContext().state.state
 
   function logMessage(title: string, message: string) {
@@ -52,28 +61,25 @@ const App: React.FC = () => {
     /** 
      * APP INITIATION
     */
-
-    const Init_App = () => {
-        (data.updated < new Date().getTime() - 86400000 || data.grupper.length < 1) ?
+    const Init_App = async () => {
+      (data.updated < new Date().getTime() - 86400000 || data.grupper.length < 1) ?
         getGnfGrupper()
-        .then((r) => {
-          try {
-            // console.log(r)
-            if (r?.data === undefined) {
-              throw new Error(r.message);
+          .then((r) => {
+            try {
+              if (r?.data?.data === undefined) {
+                throw new Error(JSON.stringify(r));
+              }
+              r?.data?.data && dispatch && dispatch({
+                type: ActionType.SET_DATA,
+                payload: { grupper: [...r.data.data] }
+              })
+            } catch (e: any) {
+              logMessage('Error', e.message)
             }
-            console.log('Get Data')
-            r?.data && dispatch && dispatch({
-              type: ActionType.SET_DATA,
-              payload: { ...r.data }
-            })
-          } catch (e) {
-            console.error(e)
-            logMessage('Error', e.message)
           }
-        } 
-        ) :
-        clearInterval(interval)      
+          )
+        :
+        clearInterval(interval)
       // console.log('App Initiation', updated)
       // console.log(state.state.data.updated, new Date().getTime() - 86400000)
 
@@ -81,50 +87,47 @@ const App: React.FC = () => {
     Init_App()
     const interval = setInterval(Init_App, 10000);
     return () => { clearInterval(interval) }
-  },[data])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data])
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   function handleThemeChange(event: any) {
     const target = event.target;
     const theme = themes.find((t) => t.id === parseInt(target.value));
     theme && setTheme(theme.name);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   function handleFontChange(event: any) {
     const target = event.target;
     setFont(target.value);
   }
 
-
-  // const title = 'Grønne Nabofællesskaber'
   return (
     <div className="App" style={{ '--ff': `'${font}'` } as React.CSSProperties}>
       <Storage />
       <ThemeProvider theme={themes.find((t) => t.name === theme)?.theme} >
-      <GlobalStyles />
-      <Header navigation="true" 
+        <GlobalStyles />
+        <Header navigation="true"
           // title={title}
           // variant={`fat`}
           backgroundImage={have}
           logo={[
             logo, title
           ]}
-          
-        // variant={`scrollCollapse`}
-      />
-{/*   <Themes 
-      variant="minimal" 
-      theme={theme} 
-      font={font}
-      handlers={{handleThemeChange, handleFontChange}} /> */}
-      {/* <Messages /> */}
-      <ErrorBoundary>
+        />
+        {/* <CookieSettings variant="modal" /> */}
+
+        {/* <Themes variant="minimal" theme={theme} font={font} handlers={{handleThemeChange, handleFontChange}} /> */}
+        <ErrorBoundary>
           <Router />
-      </ErrorBoundary>
-        <Footer variant={'collapse'} />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <Footer variant={'collapse'} />
+        </ErrorBoundary>
       </ThemeProvider>
-      <Messages 
-      // {...messages} /* migrated to global store*/
-      />
+      <Messages />
+      <Modal />
     </div>
   );
 }
@@ -132,23 +135,101 @@ const App: React.FC = () => {
 export default App;
 
 export function QRApp() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [theme, setTheme] = React.useState(themes.find((t) => t.id === 4)?.name || 'gnf');
 
   return (
-      // <StateProvider value={initialState}>
+    // <StateProvider value={initialState}>
     <div className="App">
       <Storage />
       <ThemeProvider theme={themes.find((t) => t.name === theme)?.theme} >
         <GlobalStyles />
-        <Header 
+        <Header
           backgroundImage={have}
           logo={[
-            `${process.env.PUBLIC_URL}/logo/gnf-logo.svg`,
-            `${process.env.PUBLIC_URL}/logo/gnf-text.svg`,
+            logo, title
           ]}
-          // some={SoMeData}
         />
         <CardGenerator />
+      </ThemeProvider>
+    </div>
+    // </StateProvider>
+  );
+}
+
+export function FullMap() {
+  const { dispatch } = useStateContext()
+  const { data } = useStateContext().state.state
+  // React.useEffect(() => {
+  //   /** 
+  //    * APP INITIATION
+  //   */
+
+  function logMessage(title: string, message: string) {
+    dispatch && dispatch({
+      type: ActionType.NEW_MESSAGE,
+      payload: {
+        title: title,
+        body: message,
+      }
+    })
+  }
+
+  React.useEffect(() => {
+    /** 
+     * APP INITIATION
+    */
+    const Init_App = async () => {
+      (data.updated < new Date().getTime() - 86400000 || data.grupper.length < 1) ?
+        getGnfGrupper()
+          .then((r) => {
+            // console.log(r.data?.data);
+            try {
+              // console.log(r)
+              if (r?.data?.data === undefined) {
+                throw new Error(JSON.stringify(r));
+              }
+              r?.data?.data && dispatch && dispatch({
+                type: ActionType.SET_DATA,
+                payload: { grupper: [...r.data.data] }
+              })
+            } catch (e: any) {
+              console.error(e)
+              logMessage('Error', e.message)
+            }
+          }
+          )
+        :
+        clearInterval(interval)
+      // console.log('App Initiation', updated)
+      // console.log(state.state.data.updated, new Date().getTime() - 86400000)
+
+    }
+    Init_App()
+    const interval = setInterval(Init_App, 10000);
+    return () => { clearInterval(interval) }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data])
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [theme, setTheme] = React.useState(themes.find((t) => t.id === 4)?.name || 'gnf');
+
+  return (
+    // <StateProvider value={initialState}>
+    <div className={`App embed`}>
+      {/* <Storage /> */}
+      <ThemeProvider theme={themes.find((t) => t.name === theme)?.theme} >
+        <GlobalStyles />
+        <Header
+          variant='embed'
+          // backgroundImage={have}
+          logo={[
+            logo, title
+          ]}
+        />
+        <Map variant="embed-logo" /*variant="embed" | variant="embed-logo"*/ />
+        <Modal />
+        {/* <CookieSettings variant="modal" /> */}
       </ThemeProvider>
     </div>
     // </StateProvider>

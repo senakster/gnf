@@ -1,0 +1,115 @@
+@import "/src/_libs/_styles/include-media.scss";
+
+      // display: flex;
+    .ModalContent {
+        position: relative;
+        max-width: calc(768px - 2em);
+        min-width: calc(300px - 1em);
+        max-height: 90vh;
+        // overflow: hidden;
+        margin: 1em;
+        padding: .4em;
+        background-color: var(--background-color);
+        border-radius: 1em;        
+        box-shadow: 0 0 2em black;
+        // flex: 1 1;
+        display: block;
+        .listContent {
+        max-height: calc(90vh - 150px);
+        padding: .4em 0 2em 0;
+        overflow-y: auto;
+        font-size: 90%;
+        display: block;
+        mask-image: linear-gradient(transparent,black 1em, black calc(100% - 2em), transparent);
+        ul {display: block;}
+        }
+        $size: 2.5em;
+        $tsize: $size * .8;
+        $bsize: $size * .6;
+        font-size: 80%;
+        // max-width: 80vw;
+        // max-height: 300px;
+        // overflow: auto;
+        .municipality {
+            border-bottom: 1px solid var(--text-color);
+        }
+        .kommunegruppe {
+            // background-color: rgba(0,0,0,.1);
+        }
+        li {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            > * {
+                padding: .2em;
+                > * {
+                    padding: .1em;
+                }
+                
+                flex: 0 0;
+                
+                &:nth-child(2) {
+                    padding-left: 1em;
+                    flex: 8 1;
+                }
+                
+            }
+            
+            .groupName {
+                font-size: $size * .8;
+                font-family: 'Lora', serif;
+            }
+            
+            .icons {
+                flex: 4 0;
+                width: $size;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                flex-direction: row;
+                flex-wrap: nowrap;
+            }
+        }
+        .joinText {
+            > span::before {
+                content: "\a";
+                white-space: pre;
+            }
+            > a {word-break: break-all;}
+        }
+        button {
+            // font-size: $bsize;
+        }
+        .linkIcon {
+            height: $size;
+        }
+        .logo, .icon {
+            width: $bsize;
+        }
+        
+    }
+
+@include media(">phone", "<=tablet") {
+    .ModalContent {
+        margin: 2em;
+        padding: 1em;
+    }
+}
+@include media(">tablet") {
+    .ModalContent {
+        margin: 2em auto;
+        padding: 2em;
+
+    }
+}
+
+@supports (-webkit-overflow-scrolling: touch) {
+  /* CSS specific to iOS devices */ 
+      .ModalContent {
+          .listContent {
+            overflow-y: scroll !important;
+            -webkit-overflow-scrolling: touch !important;
+          }
+      }
+  }

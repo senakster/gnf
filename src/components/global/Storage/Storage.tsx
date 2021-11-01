@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './Storage.module.scss'
-import { Action, ActionType, useStateContext } from '_state';
-import { Context as StateContext } from '_state/reducers/stateReducer';
-import { Context as MessageContext } from '_state/reducers/messageReducer';
-import { Context as UserContext } from '_state/reducers/userReducer';
+import { Action, ActionType, useStateContext } from '_libs/_state';
+import { Context as StateContext } from '_libs/_state/reducers/stateReducer';
+import { Context as MessageContext } from '_libs/_state/reducers/messageReducer';
+import { Context as UserContext } from '_libs/_state/reducers/userReducer';
 // import { Dispatcher } from '../ErrorBoundary/ErrorBoundary';
 
 const Storage: React.FC<any> = ({variant}) => {

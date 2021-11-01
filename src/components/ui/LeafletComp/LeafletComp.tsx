@@ -1,26 +1,27 @@
 import React from 'react';
 import ReactDOMServer from "react-dom/server";
-import '_styles/leaflet.scss';
-import '_styles/icons.scss';
+import '_libs/_styles/leaflet.scss';
+import '_libs/_styles/icons.scss';
 import styles from './LeafletComp.module.scss';
 import { FeatureCollection } from 'geojson';
 import {
   MapContainer, TileLayer, useMap, GeoJSON,
   // Marker, Popup, Polyline, Polygon, useMapEvents 
 } from 'react-leaflet';
-import { mapTilesets } from '_themes'
-import municipalitiesGeoJSON from '_data/denmark-municipalities.json'
-import GNFGrupper from '_data'
-import config from '_config/config.json'
+import { mapTilesets } from '_libs/_themes'
+import municipalitiesGeoJSON from '_libs/_data/denmark-municipalities.json'
+import config from '_libs/_config/config.json'
 import L, { LatLngBoundsExpression } from 'leaflet';
-import Button from '../Button/Button';
-import { logo } from '_media/img/images.json'
+import { logo } from '_libs/_media/img/images.json'
 import { DefaultTheme, useTheme } from 'styled-components';
-import { ActionType, useStateContext } from '_state';
+import { ActionType, useStateContext } from '_libs/_state';
 import Loading from 'components/global/Loading/Loading';
 import SvgIcon from '../SvgIcon/SvgIcon';
+import { useTranslation } from 'react-i18next';
+import Miyawaki from '../LeafletCompMiyawaki/Miyawaki/Miyawaki';
+import Legend from '../LeafletCompMiyawaki/Miyawaki/Legend';
 
-const LeafletComp: React.FC = () => {
+const LeafletComp: React.FC<any> = ({variant}) => {
   const { data } = useStateContext().state.state;
   const [state, setState] = React.useState({ tileLayer: false})
 
@@ -31,12 +32,11 @@ const LeafletComp: React.FC = () => {
     })
   }
 
-
-  // console.log(state.grupper)
   const c: L.LatLng = new L.LatLng(config.map.centerDefault.lat, config.map.centerDefault.lng);
   return (
     data.grupper.length > 0 && data.updated > 0  ? 
-    <div id='LeafletMap' className={styles.LeafletComp} data-testid="LeafletComp">
+    <div id='LeafletMap' className={`${styles.LeafletComp} ${variant && styles[variant]}`} data-testid="LeafletComp">
+      
       <MapContainer
         className={styles.mapContainer}
         center={[c.lat, c.lng]}
@@ -47,8 +47,11 @@ const LeafletComp: React.FC = () => {
           // {...mapTilesets.dark}
           {...mapTilesets.light}
         />}
-        <GeoData attribution="<a href='https://github.com/magnuslarsen/geoJSON-Danish-municipalities'>GeoJson</a>" grupper={data.grupper} />
+        <GeoData 
+        attribution="<a href='https://github.com/magnuslarsen/geoJSON-Danish-municipalities'>GeoJson</a>" 
+        grupper={data.grupper} />
         <MapControls active={state.tileLayer} fn={{ toggleTiles }} />
+        {/* <Miyawaki /> */}
       </MapContainer> 
     </div> : 
     /** LOADER */ 
@@ -66,6 +69,8 @@ export default LeafletComp;
 const MapControls: React.FC<any> = ({ active, fn }) => {
   const parentMap = useMap()
   const bounds = (config.map.bounds.Denmark as LatLngBoundsExpression)
+  const snaptobounds = (config.map.snaptobounds.Denmark as LatLngBoundsExpression)
+
   const { dispatch } = useStateContext()
   
   function logMessage(title?: string, message?: string) {
@@ -121,14 +126,11 @@ const MapControls: React.FC<any> = ({ active, fn }) => {
     bottomright: 'leaflet-bottom leaflet-right',
     topleft: 'leaflet-top leaflet-left',
     topright: 'leaflet-top leaflet-right',
+    topcenter: 'leaflet-top',
   }
 
-
-  function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
   function defaultZoom() {
-    parentMap.flyToBounds(bounds, {duration: .25})
+    parentMap.flyToBounds(snaptobounds, {duration: .25})
     const mapY = document.getElementById('LeafletMap')
     window.scrollTo({
       top: mapY?.offsetTop || 0,
@@ -148,24 +150,25 @@ const MapControls: React.FC<any> = ({ active, fn }) => {
 
   return (
     <>
+      <Legend />
       <div className={POSITION_CLASSES.topright}>
         <div className="leaflet-control leaflet-bar">
-          <span onClick={scrollToTop} className="leaflet-control-zoom-in mapControl circleIcon" title="Scroll to Top" aria-label="Scroll to Top">&#x21EB;</span>
-          <span onClick={defaultZoom} className="leaflet-control-zoom-in mapControl" title="Default Zoom" aria-label="Default Zoom">&#x26F6;</span>
-          <span onClick={whereAmI} className="leaflet-control-zoom-in mapControl" title="Locate" aria-label="Locate">&#x2316;</span>
+          {/* <span onClick={scrollToTop} className="leaflet-control-zoom-in mapControl circleIcon" title="Scroll to Top" aria-label="Scroll to Top">&#x21EB;</span> */}
+          <span onClick={defaultZoom} className="leaflet-control-zoom-in mapControl" title="Default Zoom" aria-label="Default Zoom"><i className="material-icons">fullscreen</i></span>
+          <span onClick={whereAmI} className="leaflet-control-zoom-in mapControl" title="Locate" aria-label="Locate"><i className="material-icons">my_location</i></span>
         </div>
       </div>
-      <div className={POSITION_CLASSES.bottomleft}>
+      <div className={POSITION_CLASSES.bottomright}>
         {/* <div className="leaflet-control leaflet-bar">
         <Button onClick={fn.toggleTiles} label={active ? `hide tiles` : `show tiles`}/>
       </div> */}
       </div>
-
-
     </>
   )
 }
+
 const GeoData: React.FC<{ grupper: TGNFG[], attribution: string }> = ({ grupper, attribution }) => {
+  const { t, ready } = useTranslation('map');
   const theme = useTheme() as DefaultTheme & {
     body: string,
     text: string,
@@ -190,7 +193,7 @@ const GeoData: React.FC<{ grupper: TGNFG[], attribution: string }> = ({ grupper,
     const bounds = (config.map.bounds.Denmark as LatLngBoundsExpression)
     map.setMaxBounds(bounds)
     map.fitBounds(bounds)
-    map.setMinZoom(map.getZoom() - .5)
+    // map.setMinZoom(map.getZoom() - .5)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -227,8 +230,8 @@ const GeoData: React.FC<{ grupper: TGNFG[], attribution: string }> = ({ grupper,
   }
   function mouseleaveColor(event: L.LeafletMouseEvent) {
     const groups = grupper?.filter((gg) =>
-      gg.kommune.toUpperCase() === event.target.feature.properties.name.toUpperCase()
-      // compare(gg.kommune, event.target.feature.properties.name)
+      event.target.feature.properties.name.toUpperCase().indexOf(gg.municipality.toUpperCase()) !== -1
+      // compare(gg.municipality, event.target.feature.properties.name)
     );
     event.target.setStyle({
       fillColor: groups.length > 0 ? defaultFill : defaultFill,
@@ -236,15 +239,29 @@ const GeoData: React.FC<{ grupper: TGNFG[], attribution: string }> = ({ grupper,
     })
   }
 
+  /**
+   * 
+   * @param data {GEOJSON loop}
+   * @param layer {Leaflet Layer}
+   */
   function onEachMunicipality(data: any, layer: L.Layer | any) {
+    // Groups Matching Municipality
     const groups = grupper?.filter((gg) =>
-      gg.kommune.toUpperCase() === data.properties.name.toUpperCase()
-    );
-    // console.log(GNFGrupper.grupper)
-    groups.length > 0 && layer.bindPopup(ReactDOMServer.renderToString(<PopContent props={{ ...data.properties, groups: groups }} />))
-    // GNFGrupper.grupper.forEach((g) => console.log(g.kommune))
-    // console.log(data.properties.name)
-    layer.bindTooltip(`${data.properties.name}: ${groups.length} ${groups.length === 1 ? 'gruppe' : 'grupper'}`)
+      data.properties.name.toUpperCase().indexOf(gg.municipality.toUpperCase()) !== -1
+    )
+    //   gg.municipality.toUpperCase() === data.properties.name.toUpperCase() || 
+    //   gg.municipality.toUpperCase() === `${data.properties.name.toUpperCase()} KOMMUNE` ||
+    //   gg.municipality.toUpperCase() === `${data.properties.name.toUpperCase()}S KOMMUNE`
+    // );
+
+
+    // console.log(data, grupper);
+
+    // groups.length > 0 && 
+    layer.bindPopup(ReactDOMServer.renderToString(<PopContent props={{ ...data.properties, groups: groups, t }} />))
+
+    /** TOOLTIP */
+    // layer.bindTooltip(`${data.properties.name}: ${groups.length} ${groups.length === 1 ? 'gruppe' : 'grupper'}`)
 
     layer.options = {
       ...layer.options,
@@ -274,28 +291,57 @@ const GeoData: React.FC<{ grupper: TGNFG[], attribution: string }> = ({ grupper,
 }
 
 const PopContent: React.FC<any> = ({ props }) => {
-  return (
+    const t = props.t;
+   return (
     <div className={styles.popup}>
-      <h2>{`${props.name}:`}</h2>
+      <h2 className={styles.municipality}>{`${props.name}:`}</h2>
+      <div className={styles.listContent}>
       <ul>
-        {props.groups.map((g: any) => {
+        {props.groups.map((g: TGNFG) => {
+          const links = JSON.parse(g.links)
           return (
-            <li key={g.id}>
+            <li key={g.groupid} className={`${styles[g.grouptype]}`}>
               <div className={styles.icon}>
-                <SvgIcon {...{id: logo.id}}/>
+                <SvgIcon width={`2.5em`} {...{id: logo.id}}/>
               </div>
               {/* <img className={styles.logo} src={logo.url.replace("%PUBLIC_URL%", process.env.PUBLIC_URL)} alt="logo" /> */}
               {/* {POPUP FORCES STRING - NO ONCLICK} UGLY HREF*/}
-              <a href={`${window.location.pathname}#/group/${g.id}`}>
+              {/* {<a href={`${window.location.pathname}#/group/${g.id}`}>
                 <Button label={g.navn}/>
-              </a>
-              <a href={`${g.links[0]}`} rel="noreferrer" target="_blank">
-                <img className={styles.linkIcon} src={`${process.env.PUBLIC_URL}/logo/facebook_21.svg`} alt="facebook" />
-              </a>
+              </a>} */}
+              <span className={`${styles.groupName} `}>{g.name}</span>
+              <div className={styles.icons}>
+                {links.map((l: TLink, i: number) => 
+                  <a key={i} href={`${l.url}`} rel="noreferrer" target="_blank">
+                    <SvgIcon width={`2.5em`} {...{ id: l.name || 'linkicon  ' }} />
+                  </a> 
+                )}
+
+              </div>
             </li>
           )
         })}
+        <li className={styles.join}>              
+          <h1>+</h1>
+          <span>{t('popup.join')}</span>
+          <div className={styles.icons}>
+              <a href={`mailto:${config.contact.email}`} rel="noreferrer" target="_blank">
+                <SvgIcon width={`2.5em`}{...{ id: 'email'}} />
+              </a>
+              <a href={config.contact.facebook} rel="noreferrer" target="_blank">
+                <SvgIcon width={`2.5em`} {...{ id: 'facebook' }} />
+              </a>
+          </div>
+            
+        </li>
       </ul>
+         <div className={styles.joinText}>
+           {t('popup.contactUs')}: <br />
+           <a href={`mailto:${config.contact.email}`}>info@omstilling.nu</a><br />
+           {t('w.or')}<br />
+           <a target="_blank" rel="noreferrer" href={`${config.contact.facebook}`}>www.facebook.com/groennenabofaellesskaber</a><br />
+         </div>
+      </div>
 
     </div>)
 }

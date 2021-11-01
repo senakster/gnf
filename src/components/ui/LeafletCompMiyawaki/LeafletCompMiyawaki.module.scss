@@ -1,0 +1,110 @@
+.LeafletCompMiyawaki {
+    height: 100vh;
+    &.embed-logo {
+        height: 72.5vh;
+    }
+    width: 100%;
+    font-family: 'Poppins', open-sans;
+    .videoBackground {
+        position: absolute;
+        max-height: 100vh;
+        overflow: hidden;
+        video {
+            max-width: 100%;
+        }
+    }
+    .mapContainer {
+        $pulse: 6000ms;
+        width: 100%;
+        height: 100%;
+        border: 1px solid rgba(0,0,0,.1);
+        // animation: swirl1-theme $pulse infinite alternate linear;
+        .popup {
+            $size: 2.5em;
+            $tsize: $size * .8;
+            $bsize: $size * .6;
+            max-width: 80vw;
+            max-height: 300px;
+            overflow: auto;
+            .municipality {
+                border-bottom: 1px solid var(--text-color);
+            }
+            .kommunegruppe {
+                // background-color: rgba(0,0,0,.1);
+            }
+            li {
+                display: flex;
+                align-items: center;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                > * {
+                    padding: .2em;
+                > * {
+                    padding: .1em;
+                }
+  
+                flex: 1 0;
+
+                &:nth-child(2) {
+                    padding-left: 1em;
+                    flex: 8 1;
+                }
+
+                }
+                
+                .groupName {
+                    font-size: $size * .8;
+                    font-family: 'Lora', serif;
+                }
+
+                .icons {
+                    flex: 3 1;
+                    width: $size;
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+                    flex-direction: row;
+                    flex-wrap: nowrap;
+                }
+            }
+            .joinText {
+                > span::before {
+                    content: "\a";
+                    white-space: pre;
+                }
+                > a {word-break: break-all;}
+            }
+            button {
+                font-size: $bsize;
+            }
+            // .groupName {
+            //     font-size: $tsize;
+            //     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            // }
+            .linkIcon {
+                height: $size;
+            }
+            .logo, .icon {
+                width: $bsize;
+            }
+        }
+    }
+}
+
+// @keyframes swirl1-theme {
+//     @for $i from 0 through 255 {
+//     #{$i * 1%} {
+//       background:
+//         linear-gradient(
+//             ($i * 2.7 * 1deg + 45), 
+//             rgba(255,255,0,.5*$i/255) $i * .5 * 1%, 
+//             rgba(0,255,255,.4-$i/255) 100%
+//             )
+//         ,linear-gradient(
+//             ($i * -2.7 * 1deg), 
+//             rgba(255,255,255,.5) 38%, 
+//             rgba(255,255,0,.5) 100%)
+//         ;
+//     }
+//   }
+// }

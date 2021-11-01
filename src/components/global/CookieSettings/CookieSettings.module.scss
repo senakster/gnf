@@ -1,0 +1,189 @@
+.CookieSettings {
+    $height: 30em;
+    $width: 30em;
+    // font-family: ;
+    h1,h2,h3,h4,button {
+    font-family: "Lora", serif;
+
+    }
+    font-size: initial;
+    &.inactive{
+        // position: fixed; 
+        // bottom: 2em;
+        // left: 2em;
+        // width: 200px;
+        // height: 2em;
+        // background-color: red;
+        > button {
+            opacity: .4;
+            // position: absolute;
+            // bottom: -6em;
+            // transition: bottom 300ms;
+        }
+        &:hover {
+            > button {opacity: 1}
+        }
+    }
+    &.modal.inactive {
+        display: none;
+    }
+    &.modal.active {
+    .closeArea {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+    }
+    outline: solid 100vmax rgba(0,0,0,.3);
+    &::before{
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: $width;
+        max-width: 90vw;
+        height: $height;
+        max-height: 90vh;
+        z-index: 20000;
+        background-color: var(--text-color);
+        color: var(--background-color);
+        margin: 1em;
+        .container {
+            position: relative;
+            z-index: 1;
+            height: 94%;
+            height: calc(100% - var(--container-margin)*2);
+            width: 94%;
+            width: calc(100% - var(--container-margin)*2);
+            // background-color: rgba(0,255,0,.3);
+            overflow-y: auto;
+            overflow-x: hidden;
+            .content {
+                h1,h2,h3,h4 {
+                    color: var(--secondary-dark-color);
+                }
+                .consentAction {
+                    margin-top: var(--container-margin);
+                    display: flex;
+                    justify-content: space-between;
+                    > button {
+                        flex: 1 1;
+                        font-size: 110%;
+                        &:nth-child(2) {
+                            filter: grayscale(70%);
+                            opacity: .4;
+                        }
+                    }
+                }
+                z-index: 1;
+            }
+        }
+    }
+    .CookieInformation {
+        padding: .4em;
+        .infoTab {
+            display: flex;
+            > button {
+                flex: 1 1;
+            }
+        }
+        .infoContainer {
+            // position: relative;
+            // overflow: hidden;
+            .infoContent {
+                $fadeDur: 400ms;
+                position: absolute;
+                opacity: 0;
+                top:0;
+                left: 0;
+                width: 100%;
+                z-index: -1;
+                .closeBtn {
+                    position: relative;
+                    button {
+                        position: fixed;
+                        z-index: 5;
+                        transform: translate(-2.3em, -2.3em);
+                    }
+                }
+                .catBtnContainer{
+                    width: 100%;
+                    display: flex;
+                    flex-wrap: wrap;
+                    > button {
+                        flex: 1 1 auto;
+                    }
+                }
+                    .cookieInfoBox {
+                        display: flex;
+                        flex-direction: column;
+                        height: 0;
+                        .catTitle {
+                            color: var(--secondary-dark-color);
+                        }
+                        .declarationText {
+                            font-size: 80%;
+                            padding-bottom: 1em;
+                        }
+                        ul.cookieProps {
+                            border-top: .3em solid var(--secondary-dark-color);
+                            list-style: none;
+                            margin-block-end: 0;
+                            margin-block-start: 0;
+                            margin-inline-start: 0px;
+                            margin-inline-end: 0px;
+                            padding-inline-start: 0px;;
+                            li {
+                                font-size: 80%;
+                                span {
+                                    font-size: 1em;
+                                    font-weight: bold;
+                                    color: var(--secondary-dark-color);
+                                }
+                                margin: .4em;
+                                padding: .4em;
+                                border: .03em solid var(--background-color);
+                            }
+                        }
+                    }
+                &.active {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    background-color: var(--text-color);
+                    // animation-duration: initial;
+                    animation: fadeDetails $fadeDur forwards;
+                    outline: solid $height var(--text-color);
+                    opacity: 1;
+                    z-index: 10;
+                    .cookieInfoBox {
+                        height: auto;
+                    }
+               }
+               .cookieInfoBox {
+                   z-index: inherit;
+                   max-width: 100%;
+                   overflow: hidden;
+               }
+            }
+        }
+    }
+}
+
+@keyframes fadeDetails {
+    from {
+        opacity: 0;
+        z-index: -1;
+    } to {
+        opacity: 1;
+        z-index: 10;
+    }
+}

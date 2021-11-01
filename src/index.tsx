@@ -1,16 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
-import App, { QRApp } from './App';
+import './_libs/_translation/i18n.http';
+// import './_libs/_translation/i18n';
+import App, { FullMap, QRApp } from './App';
 // import Storage from 'components/global/Storage/Storage'
 import reportWebVitals from './reportWebVitals';
-import { initialState, StateProvider } from '_state';
+import { initialState, StateProvider } from '_libs/_state';
 
 ReactDOM.render(
   <React.StrictMode>
     <StateProvider value={initialState}>
+      {/**
+       * Build Variant
+       */}
+       
       <App />
       {/* <QRApp /> */}
+      {/* <FullMap /> */}
     </StateProvider>
   </React.StrictMode>,
   document.getElementById('root')

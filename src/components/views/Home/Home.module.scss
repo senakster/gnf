@@ -4,6 +4,13 @@
         .content {
             // padding: 2em;
             word-break: break-word;
+            section {
+                padding: 1em;
+                border-bottom: 1px solid var(--text-color);
+                &:last-child {
+                    border: none;
+                }
+            }
         }
     }
     .icon {

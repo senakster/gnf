@@ -2,14 +2,14 @@ import React from 'react';
 import styles from './Router.module.scss';
 import views from 'components/views/index'
 // import config from '_config'
-import { history } from '_helpers'
+import { history } from '_libs/_helpers'
 import { Route, Router, Switch, 
   // BrowserRouter, HashRouter 
 } from 'react-router-dom';
 
-const RootComponent = 'Velkommen';
+const RootComponent = 'Home';
 const ErrorComponent = 'Error';
-const excludeComponents = ['Error','Gruppe Detailler']
+const excludeComponents = ['Error']
 
 const routes = [
   { ...views.find((view) => view.name === RootComponent), path: '/' },
@@ -27,6 +27,7 @@ export const navRoutes = [
 ]
 
 const Routes: React.FC = () => {
+
   return (
     <div className={`${styles.SwitchContainer} content`} data-testid="Router">
       <Router 

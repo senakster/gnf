@@ -1,0 +1,37 @@
+{
+    "w": {
+        "Cookies": "Cookies",
+        "name": "name",
+        "domain": "domain",
+        "expiration": "expiration",
+        "description": "description"
+    },  
+    "Cookie Settings": "Cookie Settings",
+    "title": "This wesite uses cookies",
+    "subtitle":"We use cookies to enhance the user experience. Select which cookies you will allow us to use.",
+    "Strictly Necessary": "Strictly Necessary",
+    "Statistics": "Statistics",
+    "Marketing": "Marketing",
+    "Preferences": "Preferences",
+    "Unclassified": "Unclassified",
+    "Reject All": "Reject All",
+    "Accept Selection": "Accept Selection",
+    "Accept All": "Accept All",
+    "Cookie Declaration": "Cookie Declaration",
+    "About Cookies": "About Cookies",
+    "cookie-declarations": {
+        "Strictly Necessary": "Necessary cookies help make a website usable by enabling basic functions like page navigation and access to secure areas of the website. The website cannot function properly without these cookies.",
+        "Statistics": "Statistics cookies help website owners to understand how visitors interact with websites by collecting and reporting information anonymously.",
+        "Marketing": "Marketing cookies are used to track visitors across websites. The intention is to display ads that are relevant and engaging for the individual user and thereby more valuable for publishers and third party advertisers.",
+        "Preferences": "Preference cookies enable a website to remember information that changes the way the website behaves or looks, like your preferred language or the region that you are in.",
+        "Unclassified": "Unclassified cookies are cookies that we are in the process of classifying, together with the providers of individual cookies."
+    },
+    "cookie-descriptions": {
+        "cookieConsent": "Stores the user's cookie consent state for the current domain.",
+        "_ga": "Registers a unique ID that is used to generate statistical data on how the visitor uses the website.",
+        "_ga_XMMKETRZDE": "Contains campaign related information for the user. If you have linked your Google Analytics and Google Ads accounts, Google Ads website conversion tags will read this cookie unless you opt-out.",
+        "_gat": "Used by Google Analytics to throttle request rate",
+        "_gid": "Registers a unique ID that is used to generate statistical data on how the visitor uses the website."
+    },
+    "cookie-about": "Cookies are small text files that can be used by websites to make a user's experience more efficient. The law states that we can store cookies on your device if they are strictly necessary for the operation of this site. For all other types of cookies we need your permission. This site uses different types of cookies. Some cookies are placed by third party services that appear on our pages."
+}

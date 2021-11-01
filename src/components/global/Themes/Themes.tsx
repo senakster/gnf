@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './Themes.module.scss';
-import { themes } from '_themes'
-import ff from '_fonts'
-import { capitalize } from '_helpers'
+import { themes } from '_libs/_themes'
+import ff from '_libs/_fonts'
+import { capitalize } from '_libs/_helpers'
 // import { ActionType, useStateContext } from '_state';
 
 const Themes: React.FC<any> = ({ variant, theme, font, handlers }) => {

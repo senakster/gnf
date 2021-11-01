@@ -1,0 +1,104 @@
+// @import './trig.scss';
+
+.leaflet-marker-icon {
+    &.leaflet-miyawaki-icon {
+      background-color: rgb(245, 245, 219,.9);
+      animation: aurora 2000ms infinite;
+      border-radius: 50%;
+      border: 1px solid black;
+      box-shadow: -.1em .1em .5em black;
+      &:hover {
+        z-index: 1000 !important;
+        animation: jump 3000ms infinite, grow 300ms forwards;
+        background-color: rgb(245, 245, 219,1);
+      }
+    }
+    &.active {
+      animation: glow 2000ms infinite;
+    }
+  }
+
+
+@keyframes glow {
+  0% {
+      filter: drop-shadow(0 0 1em var(--primary-dark-color));
+    }
+  50% {
+      filter: drop-shadow(0 0 3em var(--primary-color));
+    }
+  100% {
+      filter: drop-shadow(0 0 1em var(--primary-dark-color));
+    }
+}
+
+@keyframes aurora {
+  0% {
+      filter: drop-shadow(0em 0em .3em var(--background-color));
+    }
+  50% {
+      filter: drop-shadow(0em 0em 2em var(--background--color));
+    }
+  100% {
+      filter: drop-shadow(0em 0em .3em var(--background-color));
+    }
+}
+
+// @keyframes wiggle-vertical {
+// @for $i from 1 through 100 {
+//     #{$i* 1%} {
+//       top:  (sin($i * 3.6deg) * 3px);
+//       // left: (cos($i * 3.6deg) * 3px);
+//     } 
+// }
+// }
+@keyframes jump {
+  $dy: -5px;
+  0% {
+    top: $dy * 1;
+  }
+  10% {
+    top: $dy * 3;
+  }
+  15% {
+    top: $dy * 1;
+  }
+  25% {
+    top: $dy * 3;
+  }
+  30% {
+    top: $dy * 1;
+  }
+  50% {
+    top: $dy * 1.5;
+  }
+  70% {
+    top: $dy * 1;
+  }
+  90% {
+    top: $dy * 1.5;
+  }
+  100% {
+    top: $dy * 1;
+  }
+}
+// @keyframes size-pulse {
+// @for $i from 1 through 100 {
+//     #{$i* 1%} {
+//       top:  (sin($i * 3.6deg) * 3px);
+//       // left: (cos($i * 3.6deg) * 3px);
+//     } 
+// }
+// }
+
+@keyframes grow {
+@for $i from 1 through 100 {
+    #{$i* 1%} {
+      $size: 30px + $i * .1667 * 1px;
+      width: $size;
+      height: $size;
+      box-shadow: ($i* .01 * -1em - .1em ) ($i* .005 * 1em + .1em) ($i* .01 * 1em + .4em) rgba(0,0,0,.5);
+      // z-index: $i;
+    } 
+}
+}
+

@@ -17,6 +17,8 @@ import { have, title, logo } from '_libs/_media/img/images.json'
 
 
 // COMPONENTS
+//REMOTE
+//import RHeader from 'host/Header'
 //GLOBAL
 import ErrorBoundary from 'components/global/ErrorBoundary/ErrorBoundary';
 import Router from 'components/global/Router/Router';
@@ -35,7 +37,7 @@ import CardGenerator from 'components/views/CardGenerator/CardGenerator';
 
 // STATE
 import { ActionType, useStateContext } from '_libs/_state';
-import { getGnfGrupper } from '_libs/_data'
+import { getGnfGrupper, getGnfGrupperREST } from '_libs/_data'
 // import { AxiosResponse } from 'axios';
 // import CookieSettings from 'components/global/CookieSettings/CookieSettings';
 
@@ -43,7 +45,7 @@ const App: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [theme, setTheme] = React.useState(themes.find((t) => t.id === 4)?.name || 'gnf');
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [font, setFont] = React.useState('Poppins');
+  const [font, setFont] = React.useState('Dosis');
   const { dispatch } = useStateContext()
   const { data } = useStateContext().state.state
 
@@ -62,16 +64,17 @@ const App: React.FC = () => {
      * APP INITIATION
     */
     const Init_App = async () => {
-      (data.updated < new Date().getTime() - 86400000 || data.grupper.length < 1) ?
-        getGnfGrupper()
+      (data.updated < new Date().getTime() - 86400000 || data.grupper.length < 1 || true) ?
+        getGnfGrupperREST()
           .then((r) => {
+            console.log(r)
             try {
-              if (r?.data?.data === undefined) {
+              if (r.data === undefined) {
                 throw new Error(JSON.stringify(r));
               }
-              r?.data?.data && dispatch && dispatch({
+              r.data && dispatch && dispatch({
                 type: ActionType.SET_DATA,
-                payload: { grupper: [...r.data.data] }
+                payload: { grupper: [...r.data] }
               })
             } catch (e: any) {
               logMessage('Error', e.message)
@@ -133,105 +136,3 @@ const App: React.FC = () => {
 }
 
 export default App;
-
-export function QRApp() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [theme, setTheme] = React.useState(themes.find((t) => t.id === 4)?.name || 'gnf');
-
-  return (
-    // <StateProvider value={initialState}>
-    <div className="App">
-      <Storage />
-      <ThemeProvider theme={themes.find((t) => t.name === theme)?.theme} >
-        <GlobalStyles />
-        <Header
-          backgroundImage={have}
-          logo={[
-            logo, title
-          ]}
-        />
-        <CardGenerator />
-      </ThemeProvider>
-    </div>
-    // </StateProvider>
-  );
-}
-
-export function FullMap() {
-  const { dispatch } = useStateContext()
-  const { data } = useStateContext().state.state
-  // React.useEffect(() => {
-  //   /** 
-  //    * APP INITIATION
-  //   */
-
-  function logMessage(title: string, message: string) {
-    dispatch && dispatch({
-      type: ActionType.NEW_MESSAGE,
-      payload: {
-        title: title,
-        body: message,
-      }
-    })
-  }
-
-  React.useEffect(() => {
-    /** 
-     * APP INITIATION
-    */
-    const Init_App = async () => {
-      (data.updated < new Date().getTime() - 86400000 || data.grupper.length < 1) ?
-        getGnfGrupper()
-          .then((r) => {
-            // console.log(r.data?.data);
-            try {
-              // console.log(r)
-              if (r?.data?.data === undefined) {
-                throw new Error(JSON.stringify(r));
-              }
-              r?.data?.data && dispatch && dispatch({
-                type: ActionType.SET_DATA,
-                payload: { grupper: [...r.data.data] }
-              })
-            } catch (e: any) {
-              console.error(e)
-              logMessage('Error', e.message)
-            }
-          }
-          )
-        :
-        clearInterval(interval)
-      // console.log('App Initiation', updated)
-      // console.log(state.state.data.updated, new Date().getTime() - 86400000)
-
-    }
-    Init_App()
-    const interval = setInterval(Init_App, 10000);
-    return () => { clearInterval(interval) }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data])
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [theme, setTheme] = React.useState(themes.find((t) => t.id === 4)?.name || 'gnf');
-
-  return (
-    // <StateProvider value={initialState}>
-    <div className={`App embed`}>
-      {/* <Storage /> */}
-      <ThemeProvider theme={themes.find((t) => t.name === theme)?.theme} >
-        <GlobalStyles />
-        <Header
-          variant='embed'
-          // backgroundImage={have}
-          logo={[
-            logo, title
-          ]}
-        />
-        <Map variant="embed-logo" /*variant="embed" | variant="embed-logo"*/ />
-        <Modal />
-        {/* <CookieSettings variant="modal" /> */}
-      </ThemeProvider>
-    </div>
-    // </StateProvider>
-  );
-}

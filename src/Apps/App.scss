@@ -1,0 +1,68 @@
+/** MEDIA MIXIN - https://raw.githubusercontent.com/eduardoboucas/include-media/master/dist/_include-media.scss */
+@import "/src/_libs/_styles/include-media.scss";
+
+/** copy paste when needed :/ */
+$breakpoints: (
+  'phone': 320px,
+  'tablet': 768px,
+  'desktop': 1024px
+) !default;
+
+
+.App {
+  font-family: var(--ff), sans-serif;
+  * {
+    box-sizing: border-box;
+  }
+}
+
+.themed-title {
+  font-family: 'Spartan',open-sans;
+}
+
+ul {
+  list-style: none;
+  margin-block-end: 0;
+  margin-block-start: 0;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 0px;
+}
+
+.placeholder {
+  opacity: .3;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.link {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+  .container {
+      --container-margin: .4em;
+      --flex-base: 1 1 100%;
+      margin: var(--container-margin);
+      > * {
+        flex-basis: var(--flex-base);
+      }
+      .content {
+            min-height: 50vh;
+      }
+  }
+@include media(">phone", "<=tablet") {
+  .container {
+    --container-margin: 1em;
+    --flex-base: 1 1 50%;
+  }
+}
+@include media(">tablet") {
+  .container {
+    --container-margin: 2em;
+    --flex-base: 1 1 33%;
+      // margin: 2em;
+  }
+}

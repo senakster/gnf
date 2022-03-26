@@ -2,20 +2,20 @@ import React from 'react';
 import styles from './Card.module.scss';
 import { logo, title } from '_libs/_media/img/images.json'
 import QRCode from 'qrcode.react'
-import styled, { DefaultTheme, useTheme } from 'styled-components';
+import { DefaultTheme, useTheme } from 'styled-components';
 import { capitalize } from '_libs/_helpers';
 import SvgIcon from '../SvgIcon/SvgIcon';
 
 
 export const blankName = '__BLANK__';
 
-const Card: React.FC<any> = (props: { data: TGNFG & { variant: string, bgImg: string } }) => {
-  const data = props.data;
+export type Props = { data: TGNFG & { variant: string, bgImg?: string } }
+
+const Card: React.FC<Props> = ({data}) => {
   const theme = useTheme() as DefaultTheme & { body: string, text: string }
-  const fbLink = JSON.parse(data.links).find((l: TLink) => l.name === 'facebook')
+  const fbLink: string = data._embedded?.grouplinks.find((l: TLink) => l.name === 'facebook')?.url || data._embedded?.grouplinks[0]?.url || ''
   return (
     <div
-      data-value={data.value}
       className={`${styles.Card}  ${styles[data.grouptype]}  ${styles[data.variant]}`}
       data-testid="Card"
       style={{ order: data.grouptype === 'lokalgruppe' ? 1 : 0 }}
@@ -27,14 +27,12 @@ const Card: React.FC<any> = (props: { data: TGNFG & { variant: string, bgImg: st
         <div className={styles.icon}>
           <SvgIcon {...{ id: title.id }} />
         </div>
-        {/* <img src={logo.replace("%PUBLIC_URL%", process.env.PUBLIC_URL)} alt="logo" /> */}
-        {/* <img src={title.url.replace("%PUBLIC_URL%", process.env.PUBLIC_URL)} alt="title" /> */}
       </div>
 
       <div className={styles.container}>
         <div
           className={styles.bg}
-          style={data.img && data.img.length > 0 ? { backgroundImage: `url(${data.img})` } : data.bgImg ? { backgroundImage: `url(${data.bgImg})` } : {}}
+          // style={data.img && data.img.length > 0 ? { backgroundImage: `url(${data.img})` } : data.bgImg ? { backgroundImage: `url(${data.bgImg})` } : {}}
         ></div>
         <div className={styles.filter}></div>
         {/* <h3 className={`${styles.title}`}>Grønne Nabofællesskaber</h3> */}
@@ -50,9 +48,9 @@ const Card: React.FC<any> = (props: { data: TGNFG & { variant: string, bgImg: st
             <span className={`${styles.description}`}>{data.beskrivelse}</span>
           </li> */}
           <li className={styles.qrcode}>
-              <a href={fbLink.url} target="_blank" rel="noreferrer">
+              <a href={fbLink} target="_blank" rel="noreferrer">
                 <QRCode
-                  value={fbLink.url}
+                  value={fbLink}
                   size={160}
                   bgColor={theme.body}
                   fgColor={theme.text}
@@ -63,7 +61,7 @@ const Card: React.FC<any> = (props: { data: TGNFG & { variant: string, bgImg: st
           </li>
             <li>
               <span className={`${styles.links}`}>
-                <a href={fbLink.url} target="_blank" rel="noreferrer">{fbLink.url}</a>
+                <a href={fbLink} target="_blank" rel="noreferrer">{fbLink}</a>
               </span>
             </li>
         </ul>

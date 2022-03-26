@@ -1,10 +1,11 @@
 {
     "app": {
         "homepage": ".",
-        "version": "0.2.9",
+        "version": "0.3.0",
         "basename": "gnf-map",
         "dataurl": "https://omstilmig.nu/public/gnfgrupper.json",
-        "dburl": "https://omstilmig.nu/gnf-groups/groups/list"
+        "dburl": "https://omstilmig.nu/gnf-groups/groups/list",
+        "RESTurl": "https://omstilmig.nu/API/group/api/v1"
     },
     "google": {
         "gtag": "G-XMMKETRZDE"

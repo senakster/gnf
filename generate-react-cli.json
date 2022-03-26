@@ -22,7 +22,7 @@
       "path": "src/components/ui",
       "withStyle": true,
       "withTest": true,
-      "withStory": true,
+      "withStory": false,
       "withLazy": false
     }
   }

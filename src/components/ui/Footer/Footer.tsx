@@ -1,6 +1,5 @@
 import CookieSettings from 'components/global/CookieSettings/CookieSettings';
 import React from 'react';
-import { Button } from 'stories/Button';
 import conf from '_libs/_config';
 import SoMe from '../SoMe/SoMe';
 import styles from './Footer.module.scss';

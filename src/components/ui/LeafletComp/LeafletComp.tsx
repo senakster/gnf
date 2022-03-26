@@ -18,7 +18,6 @@ import { ActionType, useStateContext } from '_libs/_state';
 import Loading from 'components/global/Loading/Loading';
 import SvgIcon from '../SvgIcon/SvgIcon';
 import { useTranslation } from 'react-i18next';
-import Miyawaki from '../LeafletCompMiyawaki/Miyawaki/Miyawaki';
 import Legend from '../LeafletCompMiyawaki/Miyawaki/Legend';
 
 const LeafletComp: React.FC<any> = ({variant}) => {
@@ -68,7 +67,6 @@ export default LeafletComp;
 
 const MapControls: React.FC<any> = ({ active, fn }) => {
   const parentMap = useMap()
-  const bounds = (config.map.bounds.Denmark as LatLngBoundsExpression)
   const snaptobounds = (config.map.snaptobounds.Denmark as LatLngBoundsExpression)
 
   const { dispatch } = useStateContext()
@@ -168,7 +166,7 @@ const MapControls: React.FC<any> = ({ active, fn }) => {
 }
 
 const GeoData: React.FC<{ grupper: TGNFG[], attribution: string }> = ({ grupper, attribution }) => {
-  const { t, ready } = useTranslation('map');
+  const { t } = useTranslation('map');
   const theme = useTheme() as DefaultTheme & {
     body: string,
     text: string,
@@ -298,9 +296,9 @@ const PopContent: React.FC<any> = ({ props }) => {
       <div className={styles.listContent}>
       <ul>
         {props.groups.map((g: TGNFG) => {
-          const links = JSON.parse(g.links)
+          const links = g._embedded?.grouplinks || []
           return (
-            <li key={g.groupid} className={`${styles[g.grouptype]}`}>
+            <li key={g.id} className={`${styles[g.grouptype]}`}>
               <div className={styles.icon}>
                 <SvgIcon width={`2.5em`} {...{id: logo.id}}/>
               </div>

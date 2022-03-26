@@ -1,0 +1,2 @@
+(this["webpackJsonpgnf-map"]=this["webpackJsonpgnf-map"]||[]).push([[9],{109:function(e,n,s){},119:function(e,n,s){"use strict";s.r(n);s(2);var c=s(109),t=s.n(c),i=s(0);n.default=function(){return Object(i.jsx)("div",{className:t.a.Error,"data-testid":"Error",children:Object(i.jsx)("div",{className:"container",children:Object(i.jsx)("div",{className:"content",children:Object(i.jsx)("h1",{children:"Siden kan desv\xe6rre ikke findes"})})})})}}}]);
+//# sourceMappingURL=9.85be47c9.chunk.js.map

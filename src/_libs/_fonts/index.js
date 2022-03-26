@@ -5,5 +5,6 @@ const families = [
     'Poppins',
     'Open Sans',
     'Roboto',
+    'Dosis'
 ]
 export default families;

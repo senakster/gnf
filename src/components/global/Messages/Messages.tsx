@@ -16,7 +16,7 @@ const Messages: React.FC = () => {
     })
   }
   React.useEffect(() => {
-    const duration = 4000;
+    const duration = 10000;
     const l = messages.length
     const interval = setInterval(popMessage, duration);
     l < 1 && clearInterval(interval);

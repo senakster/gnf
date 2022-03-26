@@ -1,0 +1,16 @@
+.LeafletBase{
+    height: 100vh;
+    &.embed-logo {
+        // height: 72.5vh;
+        height: 69vh;
+    }
+    width: 100%;
+    font-family: 'Poppins', open-sans;
+    .mapContainer {
+        $pulse: 6000ms;
+        width: 100%;
+        height: 100%;
+        border: 1px solid rgba(0,0,0,.1);
+        overflow: hidden;
+    }
+}

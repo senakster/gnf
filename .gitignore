@@ -13,6 +13,7 @@
 /build_embed
 /build_embed-logo
 /build_miyawaki
+/build-qr
 
 # misc
 .DS_Store

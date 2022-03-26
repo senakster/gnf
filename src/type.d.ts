@@ -1,36 +1,31 @@
 type TGNFGrupper = {
     grupper: TGNFG[];
 }
+type THateoasLink = {
+    rel: 'self' | 'update' | 'delete';
+    type: 'GET' | 'PUT' | 'DELETE';
+    href: string;
+}
 
 type TLink = {
     name: string;
     url: string;
-    description?: string; 
+    description?: string;
+    _links?: THateoasLink[];
 }
 type TGNFG = {
-    groupid: string;
+    id: string;
     grouptype: string;
     name: string;
-    // links: TLink[];
-    links: string; //JSON STRING
+    _links?: THateoasLink[];
+    _embedded?: {
+        grouplinks: TLink[];
+    }
     description: string;
     municipality: string;
     status?: 'active' | 'inactive';
-    img?: string;
-    onClick?: () => void;
-    value?: string | number; 
 }
-// type TGNFG = {
-//     id: string;
-//     type: string;
-//     navn: string;
-//     links: string[];
-//     beskrivelse: string;
-//     kommune: string;
-//     img?: string;
-//     onClick?: () => void;
-//     value?: string | number; 
-// }
+
 type IReduceCall = {
     type: string;
     payload?: string | number;
@@ -40,4 +35,8 @@ type TServerResponse = {
     data: any;
     status: 'ok' | 'fail' | 'none';
     message: string;
+}
+
+type TResource = {
+    data: any[];
 }

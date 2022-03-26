@@ -8,10 +8,12 @@ import Card from 'components/ui/Card/Card';
 const CardGenerator: React.FC = () => {
 
   const defaultData: TGNFG = {
-    groupid: '',
+    id: '',
     grouptype: '',
     name: '',
-    links: '',
+    _embedded: {
+      grouplinks: [],
+    },
     description: '',
     municipality: '',
     status: 'inactive',
@@ -34,10 +36,11 @@ const CardGenerator: React.FC = () => {
           ...state.result,
           grouptype: compare(state.name.trim(), state.kommune.trim()) ? 'kommunegruppe' : 'lokalgruppe',
           name: state.name && state.name.trim() !== '' ? capitalize(state.name.trim()) : '__BLANK__',
-          links: JSON.stringify([JSON.parse(state.url.trim())]),
+          _embedded: {grouplinks: [{name: 'facebook', url: state.url.trim()},]},
           municipality: capitalize(state.kommune.trim()),
           status: 'active',
         },
+
         error: {...state.error,
           content: '',
           active: false}
@@ -88,21 +91,12 @@ const CardGenerator: React.FC = () => {
             <Button label="Go" onClick={generate} />
           </form>
           <div className={styles.result}>
-            {state.result.status === 'active' && <Card data={state.result} />}
+            {state.result.status === 'active' && <Card data={{...state.result, variant: ''}} />}
           </div>
           {state.error.active &&
             <div className={styles.error}>
               {state.error.content}
-            </div>}
-          {
-            /**  */
-            // <ul>
-            // gnfg.grupper.map((g) => 
-            //   <li><a target="_blank" rel="noreferrer" href={g.split(' ')[0]}>{g.replace(`${g.split(' ')[0]} `, '')}</a></li>
-            //   )
-            //   <li>{JSON.stringify(grupper)}</li>
-            // </ul>
-          }
+             </div>}
         </div>
       </div>
     </div>

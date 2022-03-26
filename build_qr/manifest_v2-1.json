@@ -1,0 +1,25 @@
+{
+  "short_name": "GNF",
+  "name": "Grønne Nabofællesskaber",
+  "icons": [
+    {
+      "src": "logo/gnf-logo.svg",
+      "sizes": "any",
+      "type": "application/svg+xml"
+    },
+    {
+      "src": "logo/gnf-logo.svg",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo/gnf-logo.svg",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#1db954",
+  "background_color": "#FFFFFF"
+}

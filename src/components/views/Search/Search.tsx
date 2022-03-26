@@ -8,7 +8,7 @@ import Loading from 'components/global/Loading/Loading';
 import { useTranslation } from 'react-i18next';
 
 const Search: React.FC = () => {
-  const params: { groupId?: string; } = useParams()
+  const params: { id?: string; } = useParams()
   const { data } = useStateContext().state.state;
 
   // React.useEffect(() => {
@@ -19,8 +19,8 @@ const Search: React.FC = () => {
       <div className={`${styles.container} container`}>
         <div className={`${styles.content} content`}>
           {data.grupper.length > 0 ? <GroupList /> : <Loading />}
-          {params.groupId && data.grupper.length > 0 &&
-            <GroupDetails id={params.groupId} />
+          {params.id && data.grupper.length > 0 &&
+            <GroupDetails id={params.id} />
           }
         </div>
       </div>
@@ -145,7 +145,7 @@ const GroupList: React.FC = () => {
                     .filter(gFilter)
                     .filter((g) => g.municipality === k)
                     .map((g) =>
-                      <Card key={g.name} data={g} />
+                      <Card key={g.name} data={{...g, variant: ''}} />
                     )
                   }
                   {/* <Button key={g.name} label={g.name} name="group" value={g.name} onClick={filterInput} />
@@ -160,14 +160,14 @@ const GroupList: React.FC = () => {
 
 const GroupDetails: React.FC<{ id: string }> = ({ id }) => {
   const { data } = useStateContext().state.state;
-  const g: TGNFG | undefined = data.grupper.find((g) => g.groupid === id)
+  const g: TGNFG | undefined = data.grupper.find((g) => g.id === id)
   return (
     <div className={styles.details}>
       {g?.municipality &&
         <>
           <div className={styles.title}><h1>{g.municipality}</h1></div>
           <div id={`cards`} className={styles.cards}>
-            <Card data={{ ...g }} />
+            <Card data={{ ...g, variant: '' }} />
           </div>
         </>
       }

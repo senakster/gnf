@@ -6,9 +6,11 @@
  font-family: 'Open Sans', sans-serif;
  font-family: 'Poppins', sans-serif;
  font-family: 'Roboto', sans-serif; 
+ font-family: 'Dosis', sans-serif;
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis&display=swap');
 
 @font-face {
   font-family: 'Spartan';
@@ -28,5 +30,13 @@
 @font-face {
   font-family: 'All Round Gothic';
   src: local('All Round Gothic'), url(./AllRoundGothic/AllRoundGothicW01Bold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Dosis';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Dosis'), url(./Dosis/Dosis-Regular.ttf) format('truetype');
 }
 

@@ -12,9 +12,9 @@ const PopContent: React.FC<any> = ({ groups, name}) => {
             <h2 className={styles.municipality}>{`${name}:`}</h2>
             <ul>
                 {groups.map((g: TGNFG) => {
-                    const links = JSON.parse(g.links)
+                    const links = g._embedded?.grouplinks || []
                     return (
-                        <li key={g.groupid} className={`${styles[g.grouptype]}`}>
+                        <li key={g.id} className={`${styles[g.grouptype]}`}>
                             <div className={styles.icon}>
                                 <SvgIcon width={`2.5em`} {...{ id: logo.id }} />
                             </div>

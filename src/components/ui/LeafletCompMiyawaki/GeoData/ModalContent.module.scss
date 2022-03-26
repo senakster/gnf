@@ -33,9 +33,6 @@
         .municipality {
             border-bottom: 1px solid var(--text-color);
         }
-        .kommunegruppe {
-            // background-color: rgba(0,0,0,.1);
-        }
         li {
             display: flex;
             align-items: center;
@@ -77,9 +74,6 @@
                 white-space: pre;
             }
             > a {word-break: break-all;}
-        }
-        button {
-            // font-size: $bsize;
         }
         .linkIcon {
             height: $size;
